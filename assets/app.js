@@ -14,7 +14,7 @@ const content = {
       eyebrow: 'Personal Homepage',
       title: '你好，我是魏艳。我把 AI 原型做成可以被验证的系统。',
       lede:
-        '我常从一个具体场景开始：一道题如何衡量理解，一次导览如何不胡说，一个康养流程如何让不同角色接得上。现在我在智能教育、RAG 可靠性、LLM 评估和应用工程之间来回走。',
+        '我目前学习软件工程，关注智能教育、RAG 可靠性、LLM 评估和应用工程。我喜欢从真实使用场景出发，把想法做成系统，再回头追问它是否可靠、为什么可靠、还能怎样被验证。',
       primary: '看看我的项目',
       name: '魏艳 / Yan Wei',
       role: '西南大学 · 软件工程本科',
@@ -23,6 +23,10 @@ const content = {
       eyebrow: 'Focus',
       title: '我关心 AI 系统在真实使用里是否站得住。',
       lede: '我喜欢先看清楚人、场景和约束，再决定模型、检索、工具和界面各自该承担什么。',
+    },
+    about: {
+      eyebrow: 'About',
+      title: '我正在学习如何把一个“能跑”的 AI 应用，推进到更可靠、更可解释、更能被复用。',
     },
     work: {
       eyebrow: 'Selected Work',
@@ -68,7 +72,7 @@ const content = {
       eyebrow: 'Personal Homepage',
       title: 'Hi, I’m Yan Wei. I turn AI prototypes into systems that can be tested.',
       lede:
-        'I often start from a concrete scene: how a question measures understanding, how a tour guide avoids hallucination, or how an eldercare workflow connects different roles. I move between intelligent education, RAG reliability, LLM evaluation, and applied engineering.',
+        'I study software engineering and work around intelligent education, RAG reliability, LLM evaluation, and applied systems. I like starting from real use cases, building the idea into a system, and then asking whether it is reliable, why it is reliable, and how it can be tested.',
       primary: 'See my projects',
       name: 'Yan Wei / 魏艳',
       role: 'Software Engineering · Southwest University',
@@ -78,6 +82,10 @@ const content = {
       title: 'I care about whether AI systems hold up in real use.',
       lede:
         'I try to understand people, scenarios, and constraints before deciding what the model, retrieval layer, tools, and interface should each be responsible for.',
+    },
+    about: {
+      eyebrow: 'About',
+      title: 'I am learning how to move an AI application from “it runs” toward something more reliable, explainable, and reusable.',
     },
     work: {
       eyebrow: 'Selected Work',
@@ -124,6 +132,11 @@ const data = {
       ['工程经验', '我做过前后端系统、RAG 应用、数字人交互、多模态识别和智能体流程。'],
       ['协作习惯', '我习惯把模糊需求拆成定义、流程、接口、实验和交付物。'],
       ['个人偏好', '我更容易被有真实对象的技术吸引：学习者、照护者、游客、需要辅助的人。'],
+    ],
+    about: [
+      '我不是想把主页写成另一份简历。更准确地说，这里是一个公开入口：如果你来自高校、实验室、企业团队，或者只是做相近方向，希望能快速知道我在关心什么、做过什么、适合聊什么。',
+      '我目前最稳定的兴趣在智能教育和可信 AI 系统之间。教育场景让我看到“理解、反馈、题目质量、学习过程”这些具体问题；RAG、LLM 评估和工具调用则让我思考系统怎样减少幻觉、说明依据、接入真实任务。',
+      '我也很在意工程实现。一个想法如果不能被做成清晰的流程、接口、页面、实验记录和可复现结果，就很难继续讨论。我希望自己既能提出问题，也能把系统真正落下来。',
     ],
     focus: [
       {
@@ -248,6 +261,11 @@ const data = {
       ['Applied work', 'I have worked on web systems, RAG applications, digital-human interaction, multimodal recognition, and agent workflows.'],
       ['Working habit', 'I break vague needs into definitions, workflows, interfaces, experiments, and deliverables.'],
       ['Personal pull', 'I am drawn to technology with real people behind it: learners, caregivers, travelers, and people who need support.'],
+    ],
+    about: [
+      'I do not want this site to be another resume. It is a public entry point: if you come from a university, a lab, an engineering team, or a nearby field, I hope you can quickly understand what I care about, what I have built, and what we might talk about.',
+      'My current interests sit between intelligent education and trustworthy AI systems. Education gives me concrete questions around understanding, feedback, question quality, and learning processes; RAG, LLM evaluation, and tool use make me ask how systems can reduce hallucination, show evidence, and enter real tasks.',
+      'I also care about implementation. If an idea cannot become a clear workflow, interface, page, experiment note, or reproducible result, it is hard to keep improving it. I want to be able to ask good questions and build systems that actually hold together.',
     ],
     focus: [
       {
@@ -382,7 +400,7 @@ function applyLanguage() {
     if (typeof value === 'string') setText(key, value);
   });
   renderBrief();
-  renderOverview();
+  renderAbout();
   renderFocus();
   renderWork();
   renderCapabilities();
@@ -405,15 +423,12 @@ function renderBrief() {
     .join('');
 }
 
-function renderOverview() {
-  const grid = document.querySelector('#overviewGrid');
-  grid.innerHTML = data[state.lang].overview
+function renderAbout() {
+  const copy = document.querySelector('#aboutCopy');
+  copy.innerHTML = data[state.lang].about
     .map(
-      ([title, body]) => `
-        <article>
-          <h3>${title}</h3>
-          <p>${body}</p>
-        </article>
+      (paragraph) => `
+        <p>${paragraph}</p>
       `,
     )
     .join('');
