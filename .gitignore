@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.vite-dev*.log
+*-preview.png
+desktop-preview.png
+mobile-preview.png
+mobile-scrolled-preview.png
