@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="魏艳 / Yan Wei 的个人主页：关于她的方向、作品、工作方式与持续记录。"
+      content="魏艳 / Yan Wei 的个人主页：可信 AI 系统、智能教育、RAG 与应用工程。"
     />
-    <meta name="theme-color" content="#f5f4ef" />
+    <meta name="theme-color" content="#f7f7f3" />
     <meta property="og:title" content="魏艳 / Yan Wei" />
     <meta
       property="og:description"
-      content="A bilingual personal homepage for Yan Wei, featuring her interests, selected work, working style, and personal notes."
+      content="Yan Wei's personal homepage: trustworthy AI systems, intelligent education, RAG, and applied software engineering."
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://francesscawy.github.io/" />
@@ -22,23 +22,22 @@
     <link rel="stylesheet" href="./assets/styles.css" />
   </head>
   <body>
-    <canvas id="field" aria-hidden="true"></canvas>
     <div class="site-shell">
       <header class="topbar">
         <a class="brand" href="#top" aria-label="Yan Wei home">
           <span class="brand-mark">YW</span>
           <span class="brand-copy">
-            <strong data-i18n="nav.name">魏艳</strong>
-            <small data-i18n="nav.role">Personal homepage</small>
+            <strong data-i18n="nav.name">魏艳 / Yan Wei</strong>
+            <small data-i18n="nav.role">AI Systems · Intelligent Education</small>
           </span>
         </a>
 
         <nav class="nav-links" aria-label="Primary">
-          <a href="#about" data-i18n="nav.about">About</a>
-          <a href="#questions" data-i18n="nav.questions">Questions</a>
-          <a href="#work" data-i18n="nav.work">Work</a>
-          <a href="#notes" data-i18n="nav.notes">Notes</a>
-          <a href="#contact" data-i18n="nav.contact">Contact</a>
+          <a href="#focus" data-i18n="nav.focus">方向</a>
+          <a href="#work" data-i18n="nav.work">项目</a>
+          <a href="#capability" data-i18n="nav.capability">能力</a>
+          <a href="#notes" data-i18n="nav.notes">侧面</a>
+          <a href="#contact" data-i18n="nav.contact">联系</a>
         </nav>
 
         <div class="top-actions">
@@ -53,19 +52,16 @@
 
       <main id="top">
         <section class="hero">
-          <div class="hero-copy reveal">
+          <div class="hero-main reveal">
             <p class="eyebrow" data-i18n="hero.eyebrow">Personal Homepage</p>
-            <h1>
-              <span data-i18n="hero.name">魏艳</span>
-              <span data-i18n="hero.title">在工程、研究与真实问题之间，慢慢搭桥。</span>
-            </h1>
+            <h1 data-i18n="hero.title">我是魏艳，我在做可信 AI 系统与智能教育应用。</h1>
             <p class="hero-lede" data-i18n="hero.lede">
-              软件工程本科生，关注可信大模型系统、智能教育与 AI 应用工程。比起把经历排成清单，她更希望这里能呈现一个持续学习、搭建、验证和整理问题的人。
+              我目前学习软件工程，也在把 RAG、LLM 评估、智能体工具调用和真实场景系统结合起来。这个主页不是一份压缩简历，而是我向你介绍自己的入口：我关心什么、做过什么、正在怎样成长。
             </p>
             <div class="hero-actions">
-              <a class="primary-link" href="#about">
+              <a class="primary-link" href="#work">
                 <span class="button-icon arrow-icon" aria-hidden="true"></span>
-                <span data-i18n="hero.primary">先认识她</span>
+                <span data-i18n="hero.primary">看我做过什么</span>
               </a>
               <a class="secondary-link" href="https://github.com/FrancesscaWY" target="_blank" rel="noreferrer">
                 <span class="button-icon code-icon" aria-hidden="true"></span>
@@ -74,108 +70,67 @@
             </div>
           </div>
 
-          <aside class="identity-card reveal" aria-label="Profile overview">
-            <div class="identity-top">
-              <span class="identity-initials">YW</span>
-              <div>
-                <p class="profile-name" data-i18n="hero.profileName">Yan Wei / 魏艳</p>
-                <p data-i18n="hero.profileMeta">Software Engineering · Southwest University</p>
-              </div>
-            </div>
-            <dl class="quiet-facts">
-              <div>
-                <dt data-i18n="hero.fact1Label">Currently</dt>
-                <dd data-i18n="hero.fact1">turning AI education prototypes into research questions</dd>
-              </div>
-              <div>
-                <dt data-i18n="hero.fact2Label">Often thinking about</dt>
-                <dd data-i18n="hero.fact2">RAG reliability, evaluation, and human-facing systems</dd>
-              </div>
-              <div>
-                <dt data-i18n="hero.fact3Label">This site</dt>
-                <dd data-i18n="hero.fact3">a public notebook, not a complete CV</dd>
-              </div>
-            </dl>
+          <aside class="brief-card reveal" aria-label="Profile brief">
+            <p class="brief-name" data-i18n="hero.name">魏艳 / Yan Wei</p>
+            <p class="brief-role" data-i18n="hero.role">西南大学 · 软件工程本科</p>
+            <div class="brief-list" id="briefList"></div>
           </aside>
         </section>
 
-        <section class="framework reveal" aria-labelledby="framework-title">
-          <div class="section-intro">
-            <p class="eyebrow" data-i18n="framework.eyebrow">Content Frame</p>
-            <h2 id="framework-title" data-i18n="framework.title">先读这个人，再看她做过什么。</h2>
-            <p data-i18n="framework.lede">
-              这个主页按“人、问题、作品、记录”组织。项目和奖项会留下来，但不抢走主页的重心。
+        <section class="overview-grid reveal" id="overviewGrid" aria-label="Overview"></section>
+
+        <section class="section split-section" id="focus">
+          <div class="section-copy reveal">
+            <p class="eyebrow" data-i18n="focus.eyebrow">Focus</p>
+            <h2 data-i18n="focus.title">我把兴趣放在“可用、可信、可解释”的 AI 应用上。</h2>
+            <p data-i18n="focus.lede">
+              我喜欢从一个真实问题出发，再追问系统如何组织知识、如何调用工具、如何被评估，以及最终是否真的帮助到人。
             </p>
           </div>
-          <div class="framework-grid" id="frameworkGrid"></div>
+          <div class="focus-list" id="focusList"></div>
         </section>
 
-        <section class="split-section" id="about">
-          <div class="section-intro reveal">
-            <p class="eyebrow" data-i18n="about.eyebrow">About</p>
-            <h2 data-i18n="about.title">一个愿意把复杂问题慢慢拆开的人。</h2>
-          </div>
-          <div class="prose reveal">
-            <p data-i18n="about.body1">
-              魏艳的兴趣常常从真实场景里长出来：一次学习反馈、一段导览交互、一个照护流程，或者一道题目是否真正测到了思维层级。她习惯先把问题放回人的处境里，再思考系统该如何回应。
-            </p>
-            <p data-i18n="about.body2">
-              她喜欢工程的清晰，也喜欢研究里的追问。写代码时，她关心模块、接口和可维护性；做实验时，她关心定义、证据和可复现。这个主页会更像一个入口，保留她正在形成的方向，而不是把所有经历压缩成简历条目。
-            </p>
-          </div>
-        </section>
-
-        <section class="section-block" id="questions">
-          <div class="section-title-row reveal">
-            <div>
-              <p class="eyebrow" data-i18n="questions.eyebrow">Questions</p>
-              <h2 data-i18n="questions.title">目前最牵引她的几个问题。</h2>
-            </div>
-            <p data-i18n="questions.note">
-              这些不是固定标签，而是她在项目、论文和日常学习里反复回到的线索。
-            </p>
-          </div>
-          <div class="interest-list" id="interestList"></div>
-        </section>
-
-        <section class="section-block" id="work">
-          <div class="section-title-row reveal">
+        <section class="section" id="work">
+          <div class="section-heading reveal">
             <div>
               <p class="eyebrow" data-i18n="work.eyebrow">Selected Work</p>
-              <h2 data-i18n="work.title">作品少一点，语境多一点。</h2>
+              <h2 data-i18n="work.title">项目不是仓库清单，而是我理解问题的路径。</h2>
             </div>
-            <p data-i18n="work.note">
-              公开 GitHub 中有课程、实验、fork 和系统项目。这里保留能说明兴趣与能力走向的部分。
+            <p data-i18n="work.lede">
+              我保留了最能说明研究兴趣、系统能力和应用意识的项目。每个项目都尽量写清楚问题、我的工作和可核对的结果。
             </p>
           </div>
           <div class="work-list" id="workList"></div>
         </section>
 
-        <section class="split-section methods">
-          <div class="section-intro reveal">
-            <p class="eyebrow" data-i18n="methods.eyebrow">Ways of Working</p>
-            <h2 data-i18n="methods.title">她通常这样靠近一个问题。</h2>
-          </div>
-          <div class="method-list reveal" id="methodList"></div>
-        </section>
-
-        <section class="section-block" id="notes">
-          <div class="section-title-row reveal">
-            <div>
-              <p class="eyebrow" data-i18n="notes.eyebrow">Beyond Code</p>
-              <h2 data-i18n="notes.title">主页也应该留下不那么“项目化”的部分。</h2>
-            </div>
-            <p data-i18n="notes.note">
-              这部分会更轻，像一个正在生长的侧影。它解释她为什么会被这些问题吸引。
+        <section class="section split-section" id="capability">
+          <div class="section-copy reveal">
+            <p class="eyebrow" data-i18n="capability.eyebrow">Capability</p>
+            <h2 data-i18n="capability.title">我希望自己既能提出问题，也能把系统做出来。</h2>
+            <p data-i18n="capability.lede">
+              对高校，我希望展现研究潜力和问题意识；对企业，我希望展现工程落地、协作与持续学习能力。它们在我的项目里是连在一起的。
             </p>
           </div>
-          <div class="personal-grid" id="personalGrid"></div>
+          <div class="capability-grid" id="capabilityGrid"></div>
         </section>
 
-        <section class="evidence-section">
-          <div class="section-intro reveal">
-            <p class="eyebrow" data-i18n="evidence.eyebrow">Evidence</p>
-            <h2 data-i18n="evidence.title">一些可以被核对的节点。</h2>
+        <section class="section" id="notes">
+          <div class="section-heading reveal">
+            <div>
+              <p class="eyebrow" data-i18n="notes.eyebrow">Notes</p>
+              <h2 data-i18n="notes.title">除了技术，我也想让你看到我如何看待问题。</h2>
+            </div>
+            <p data-i18n="notes.lede">
+              同领域的人认识彼此，不只靠项目名称。这里放一些更接近我的观察、偏好和工作习惯。
+            </p>
+          </div>
+          <div class="notes-grid" id="notesGrid"></div>
+        </section>
+
+        <section class="section evidence-section">
+          <div class="section-copy reveal">
+            <p class="eyebrow" data-i18n="evidence.eyebrow">Milestones</p>
+            <h2 data-i18n="evidence.title">一些可以快速核对的节点。</h2>
           </div>
           <div class="evidence-list reveal" id="evidenceList"></div>
         </section>
@@ -183,7 +138,7 @@
         <section class="contact-section reveal" id="contact">
           <div>
             <p class="eyebrow" data-i18n="contact.eyebrow">Contact</p>
-            <h2 data-i18n="contact.title">如果你也关心可信 AI 系统、智能教育或真实场景中的产品原型，欢迎联系。</h2>
+            <h2 data-i18n="contact.title">如果你想聊可信 AI、智能教育、应用原型，或者只是想认识一下我，欢迎联系。</h2>
           </div>
           <div class="contact-actions">
             <a href="mailto:weiyan_francessca@163.com">
@@ -199,7 +154,7 @@
       </main>
 
       <footer>
-        <span data-i18n="footer.built">A quieter bilingual homepage for public sharing, built with privacy in mind.</span>
+        <span data-i18n="footer.built">Built as a bilingual personal homepage, not a resume template.</span>
         <a href="#top" data-i18n="footer.back">Back to top</a>
       </footer>
     </div>

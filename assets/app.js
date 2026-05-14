@@ -1,145 +1,112 @@
 const content = {
   zh: {
     nav: {
-      name: '魏艳',
-      role: '个人主页',
-      about: '关于',
-      questions: '问题',
-      work: '作品',
-      notes: '记录',
+      name: '魏艳 / Yan Wei',
+      role: 'AI Systems · Intelligent Education',
+      focus: '方向',
+      work: '项目',
+      capability: '能力',
+      notes: '侧面',
       contact: '联系',
       lang: 'EN',
     },
     hero: {
       eyebrow: 'Personal Homepage',
-      name: '魏艳',
-      title: '在工程、研究与真实问题之间，慢慢搭桥。',
+      title: '我是魏艳，我在做可信 AI 系统与智能教育应用。',
       lede:
-        '软件工程本科生，关注可信大模型系统、智能教育与 AI 应用工程。比起把经历排成清单，她更希望这里能呈现一个持续学习、搭建、验证和整理问题的人。',
-      primary: '先认识她',
-      profileName: 'Yan Wei / 魏艳',
-      profileMeta: '软件工程 · 西南大学',
-      fact1Label: '现在',
-      fact1: '把智能教育原型推进成可研究的问题',
-      fact2Label: '常想',
-      fact2: 'RAG 可靠性、评估、人与系统的交互',
-      fact3Label: '这个主页',
-      fact3: '公开笔记入口，不是完整简历',
+        '我目前学习软件工程，也在把 RAG、LLM 评估、智能体工具调用和真实场景系统结合起来。这个主页不是一份压缩简历，而是我向你介绍自己的入口：我关心什么、做过什么、正在怎样成长。',
+      primary: '看我做过什么',
+      name: '魏艳 / Yan Wei',
+      role: '西南大学 · 软件工程本科',
     },
-    framework: {
-      eyebrow: 'Content Frame',
-      title: '先读这个人，再看她做过什么。',
-      lede: '这个主页按“人、问题、作品、记录”组织。项目和奖项会留下来，但不抢走主页的重心。',
-    },
-    about: {
-      eyebrow: 'About',
-      title: '一个愿意把复杂问题慢慢拆开的人。',
-      body1:
-        '魏艳的兴趣常常从真实场景里长出来：一次学习反馈、一段导览交互、一个照护流程，或者一道题目是否真正测到了思维层级。她习惯先把问题放回人的处境里，再思考系统该如何回应。',
-      body2:
-        '她喜欢工程的清晰，也喜欢研究里的追问。写代码时，她关心模块、接口和可维护性；做实验时，她关心定义、证据和可复现。这个主页会更像一个入口，保留她正在形成的方向，而不是把所有经历压缩成简历条目。',
-    },
-    questions: {
-      eyebrow: 'Questions',
-      title: '目前最牵引她的几个问题。',
-      note: '这些不是固定标签，而是她在项目、论文和日常学习里反复回到的线索。',
+    focus: {
+      eyebrow: 'Focus',
+      title: '我把兴趣放在“可用、可信、可解释”的 AI 应用上。',
+      lede: '我喜欢从一个真实问题出发，再追问系统如何组织知识、如何调用工具、如何被评估，以及最终是否真的帮助到人。',
     },
     work: {
       eyebrow: 'Selected Work',
-      title: '作品少一点，语境多一点。',
-      note: '公开 GitHub 中有课程、实验、fork 和系统项目。这里保留能说明兴趣与能力走向的部分。',
+      title: '项目不是仓库清单，而是我理解问题的路径。',
+      lede: '我保留了最能说明研究兴趣、系统能力和应用意识的项目。每个项目都尽量写清楚问题、我的工作和可核对的结果。',
     },
-    methods: {
-      eyebrow: 'Ways of Working',
-      title: '她通常这样靠近一个问题。',
+    capability: {
+      eyebrow: 'Capability',
+      title: '我希望自己既能提出问题，也能把系统做出来。',
+      lede:
+        '对高校，我希望展现研究潜力和问题意识；对企业，我希望展现工程落地、协作与持续学习能力。它们在我的项目里是连在一起的。',
     },
     notes: {
-      eyebrow: 'Beyond Code',
-      title: '主页也应该留下不那么“项目化”的部分。',
-      note: '这部分会更轻，像一个正在生长的侧影。它解释她为什么会被这些问题吸引。',
+      eyebrow: 'Notes',
+      title: '除了技术，我也想让你看到我如何看待问题。',
+      lede: '同领域的人认识彼此，不只靠项目名称。这里放一些更接近我的观察、偏好和工作习惯。',
     },
     evidence: {
-      eyebrow: 'Evidence',
-      title: '一些可以被核对的节点。',
+      eyebrow: 'Milestones',
+      title: '一些可以快速核对的节点。',
     },
     contact: {
       eyebrow: 'Contact',
-      title: '如果你也关心可信 AI 系统、智能教育或真实场景中的产品原型，欢迎联系。',
+      title: '如果你想聊可信 AI、智能教育、应用原型，或者只是想认识一下我，欢迎联系。',
     },
     footer: {
-      built: '一个更安静的双语个人主页，用于公开展示，并保持必要的隐私克制。',
+      built: '一个双语个人主页，不是简历模板；我会继续更新它。',
       back: '回到顶部',
     },
   },
   en: {
     nav: {
-      name: 'Yan Wei',
-      role: 'Personal homepage',
-      about: 'About',
-      questions: 'Questions',
+      name: 'Yan Wei / 魏艳',
+      role: 'AI Systems · Intelligent Education',
+      focus: 'Focus',
       work: 'Work',
+      capability: 'Strengths',
       notes: 'Notes',
       contact: 'Contact',
       lang: '中',
     },
     hero: {
       eyebrow: 'Personal Homepage',
-      name: 'Yan Wei',
-      title: 'Building quiet bridges between engineering, research, and real problems.',
+      title: 'I am Yan Wei, and I build trustworthy AI systems for real learning scenarios.',
       lede:
-        'A software engineering undergraduate interested in trustworthy LLM systems, intelligent education, and AI application engineering. Rather than arranging every experience as a resume line, this site introduces a person who keeps learning, building, testing, and organizing questions.',
-      primary: 'Start with her',
-      profileName: 'Yan Wei / 魏艳',
-      profileMeta: 'Software Engineering · Southwest University',
-      fact1Label: 'Currently',
-      fact1: 'turning AI education prototypes into research questions',
-      fact2Label: 'Often thinking about',
-      fact2: 'RAG reliability, evaluation, and human-facing systems',
-      fact3Label: 'This site',
-      fact3: 'a public notebook, not a complete CV',
+        'I study software engineering and work at the intersection of RAG, LLM evaluation, agentic tool use, and applied systems. This site is not a compressed CV. It is where I introduce what I care about, what I have built, and how I am growing.',
+      primary: 'View my work',
+      name: 'Yan Wei / 魏艳',
+      role: 'Software Engineering · Southwest University',
     },
-    framework: {
-      eyebrow: 'Content Frame',
-      title: 'Read the person first, then the work.',
-      lede: 'The site is organized around person, questions, work, and notes. Projects and honors remain, but they are no longer the center of gravity.',
-    },
-    about: {
-      eyebrow: 'About',
-      title: 'Someone who likes taking complex things apart, patiently.',
-      body1:
-        'Yan Wei’s interests often grow from concrete situations: a moment of learning feedback, a guided-tour interaction, a care workflow, or whether a question truly measures a level of thinking. She tends to put a problem back into the human context before deciding what the system should do.',
-      body2:
-        'She likes the clarity of engineering and the persistence of research questions. When coding, she cares about modules, interfaces, and maintainability; when experimenting, she cares about definitions, evidence, and reproducibility. This homepage is an entry point into her forming direction, not a compressed resume.',
-    },
-    questions: {
-      eyebrow: 'Questions',
-      title: 'A few questions currently pulling her forward.',
-      note: 'These are not fixed labels, but threads she keeps returning to in projects, papers, and everyday learning.',
+    focus: {
+      eyebrow: 'Focus',
+      title: 'I am drawn to AI applications that are useful, trustworthy, and explainable.',
+      lede:
+        'I usually start from a concrete problem, then ask how knowledge should be organized, how tools should be invoked, how the system can be evaluated, and whether it actually helps people.',
     },
     work: {
       eyebrow: 'Selected Work',
-      title: 'Less inventory, more context.',
-      note: 'Her public GitHub includes coursework, experiments, forks, and systems. This page keeps the work that best explains her interests and direction.',
+      title: 'My projects are not a repository list. They show how I approach problems.',
+      lede:
+        'I selected projects that best reflect my research interests, system-building ability, and product awareness. Each one is described through the problem, my role, and a checkable outcome.',
     },
-    methods: {
-      eyebrow: 'Ways of Working',
-      title: 'How she usually approaches a problem.',
+    capability: {
+      eyebrow: 'Capability',
+      title: 'I want to be able to ask good questions and build working systems.',
+      lede:
+        'For academic audiences, I want to show research potential and problem formulation. For industry audiences, I want to show engineering execution, collaboration, and fast learning. In my work, these are connected.',
     },
     notes: {
-      eyebrow: 'Beyond Code',
-      title: 'A homepage should leave room for things that are not projects.',
-      note: 'This part is intentionally lighter: a side profile in progress, explaining why these problems keep attracting her attention.',
+      eyebrow: 'Notes',
+      title: 'Beyond technical labels, I want you to see how I look at problems.',
+      lede:
+        'People in the same field get to know each other through more than project names. This section keeps a few observations, preferences, and working habits that feel closer to me.',
     },
     evidence: {
-      eyebrow: 'Evidence',
-      title: 'A few checkable milestones.',
+      eyebrow: 'Milestones',
+      title: 'A few quick, checkable markers.',
     },
     contact: {
       eyebrow: 'Contact',
-      title: 'If you care about trustworthy AI systems, intelligent education, or prototypes in real settings, feel free to reach out.',
+      title: 'If you want to talk about trustworthy AI, intelligent education, prototypes in real settings, or simply get to know me, feel free to reach out.',
     },
     footer: {
-      built: 'A quieter bilingual homepage for public sharing, built with privacy in mind.',
+      built: 'Built as a bilingual personal homepage, not a resume template. I will keep updating it.',
       back: 'Back to top',
     },
   },
@@ -147,212 +114,250 @@ const content = {
 
 const data = {
   zh: {
-    framework: [
-      ['人', '她如何理解问题、学习与系统。'],
-      ['问题', '可信 AI、智能教育、RAG 可靠性和评估。'],
-      ['作品', '选择少量项目，讲清楚背景、角色和收获。'],
-      ['记录', '留下生活侧面、兴趣和持续形成中的想法。'],
+    brief: [
+      ['现在', '软件工程本科生，关注可信大模型系统与智能教育。'],
+      ['关键词', 'RAG、LLM 评估、MCP、智能体工具调用、应用工程。'],
+      ['我在寻找', '能把真实需求、研究问题和可运行系统放在一起的机会。'],
     ],
-    interests: [
+    overview: [
+      ['研究兴趣', '我关注大模型系统如何被评估、解释和约束，尤其是在智能教育场景中。'],
+      ['工程实践', '我做过前后端系统、RAG 应用、数字人交互、多模态识别和智能体流程。'],
+      ['协作方式', '我习惯把问题拆成定义、流程、接口、实验和可交付结果。'],
+      ['个人侧面', '我喜欢有真实对象的技术：学习者、照护者、游客、需要辅助的人。'],
+    ],
+    focus: [
       {
-        title: '系统怎样才算“可靠”？',
-        body: 'RAG、Agent 和大模型应用不只是能跑起来，还要能说明依据、控制边界，并在真实使用中稳定地回应需求。',
+        title: '可信 AI 系统',
+        body: '我关心系统是否能说明依据、暴露不确定性、控制工具边界，并在真实使用中稳定工作。',
       },
       {
-        title: 'AI 能否帮助学习更具体？',
-        body: '她关心智能教育中的反馈、题目质量、认知层级和学习分析，希望把抽象的“学会了”拆成可以观察和改进的信号。',
+        title: '智能教育与学习评估',
+        body: '我希望 AI 不只是“给答案”，还能够帮助理解学习过程、题目质量、认知层级和反馈机制。',
       },
       {
-        title: '工具调用如何变得可理解？',
-        body: '在 MCP、数字人、检索和前后端协作里，她更在意流程是否清楚，系统行为是否能被调试、解释和复用。',
+        title: 'RAG 与工具调用',
+        body: '我对知识组织、检索增强、MCP 交互和智能体流程感兴趣，因为它们决定模型能否接入真实任务。',
       },
     ],
     work: [
       {
         name: 'BEACON',
-        kicker: '题目质量评估 · 研究进行中',
-        summary:
-          '围绕 LLM 与 Bloom 认知模型，探索如何判断一道题是否真正测到了预期的认知层级。这个项目让她从“实现一个功能”进一步走向“定义一个评估问题”。',
-        detail: '负责文献调研、任务定义、方法设计、实验框架搭建与阶段性分析。',
-        tags: ['LLM Evaluation', 'Bloom', 'Educational AI'],
+        label: 'Research · LLM Evaluation',
+        problem: '我想回答的问题是：一道题是否真正测到了预期认知层级？',
+        contribution:
+          '我负责文献调研、任务定义、评估维度设计、实验框架搭建和阶段性结果分析，把“题目质量”拆成可讨论、可实验的指标。',
+        outcome: '关键词：Bloom 认知模型、DOK、LLM-as-a-judge、教育测评。',
+        tags: ['Bloom', 'LLM Evaluation', 'Educational AI'],
         link: null,
       },
       {
         name: 'RISE / 灵知寓学',
-        kicker: 'WWW 2026 Demo Track · 智能教育',
-        summary:
-          '一个融合 RAG、MCP、数字人交互、沉浸式课堂和学习分析的轻量化智能学习系统，面向资源受限的教育场景。',
-        detail: '参与交互流程、沉浸式教学模块、原型集成、前端与 LLM 接口联调。',
+        label: 'WWW 2026 Demo Track · Intelligent Education',
+        problem: '我参与构建面向资源受限教育场景的轻量化智能学习系统。',
+        contribution:
+          '我参与交互流程、沉浸式教学模块、系统原型集成，以及前端与 LLM 接口联调，让 RAG、MCP、数字人和学习分析形成完整体验。',
+        outcome: '相关成果被 The Web Conference 2026 Demo Track 录用，我是第三作者。',
         tags: ['RAG', 'MCP', 'Digital Human'],
         link: null,
       },
       {
         name: 'VirTour',
-        kicker: '智能体导览 · 虚拟旅游',
-        summary:
-          '从景点讲解、语音交互到全景漫游，项目让她实践了“模型回答”和“场景控制”之间的连接方式。',
-        detail: '负责 TTS 流式播放链路、MCP 交互流程、数字人模块和前端核心集成。',
+        label: 'Application · Agent-guided Tourism',
+        problem: '我把景点知识问答、数字人导览和全景漫游连接成一个可交互系统。',
+        contribution:
+          '我负责 TTS 流式播放链路、MCP 工具调用流程、数字人模块和前端核心集成，重点处理“模型回答”到“场景控制”的衔接。',
+        outcome: '项目获第 19 届“挑战杯”国家级特等奖。',
         tags: ['Agent', 'RAG', 'TTS'],
         link: 'https://github.com/FrancesscaWY/VirtualTour-Back',
       },
       {
         name: 'EmoSpark',
-        kicker: '多模态识别 · 社交辅助',
-        summary:
-          '面向自闭症儿童情绪理解与社交训练，融合面部、语音与文本信息，提供识别、反馈和训练场景。',
-        detail: '负责系统架构、FastAPI 后端、视频流情绪识别模块与接口集成。',
+        label: 'Application · Multimodal AI',
+        problem: '我参与面向自闭症儿童情绪理解与社交训练的辅助系统。',
+        contribution:
+          '我负责系统架构、FastAPI 后端、视频流情绪识别模块和接口集成，尝试把多模态识别变成可反馈、可训练的产品流程。',
+        outcome: '项目获得软件著作权，沉淀了我对特殊人群场景中 AI 应用边界的理解。',
         tags: ['FastAPI', 'OpenCV', 'Vue'],
         link: 'https://github.com/FrancesscaWY/Emotions-Attention-Identify',
       },
       {
         name: 'IntelliHealthCare / 智诊康养',
-        kicker: '全栈系统 · 智慧康养',
-        summary:
-          '面向长者、家属与机构的智慧康养平台，包含健康档案、服务预约、运营后台、RAG 检索和多智能体运行时。',
-        detail: '参与服务推荐、健康档案、后台管理和智能体相关业务页面联调。',
+        label: 'Full-stack · Smart Eldercare',
+        problem: '我参与智慧康养平台，把长者、家属和机构的不同流程放进同一个系统。',
+        contribution:
+          '我参与服务推荐、健康档案、后台管理和智能体能力相关页面联调，关注系统在多角色、多流程中的一致性。',
+        outcome: '项目让我更熟悉 Vue 3、NestJS、Prisma、RAG 与多智能体运行时的工程协作。',
         tags: ['Vue 3', 'NestJS', 'Prisma'],
         link: 'https://github.com/FrancesscaWY/IntelliHealthCare',
       },
       {
         name: 'SketchMind',
-        kicker: 'AI 反馈 · 科学草图',
-        summary:
-          '基于 Excalidraw、Next.js、Express 与 Gemini 的科学草图学习原型，关注绘图过程验证和 AI 反馈。',
-        detail: '关注 AI 反馈、绘图任务验证与教学交互体验的工程实现。',
+        label: 'Prototype · AI Feedback',
+        problem: '我探索科学草图学习中，AI 如何判断绘图过程并给出反馈。',
+        contribution:
+          '我关注绘图任务验证、上传分析和 AI 反馈体验，使用 Excalidraw、Next.js、Express 与 Gemini 搭建原型。',
+        outcome: '这个项目帮助我思考“AI 反馈”怎样从一句建议变成可嵌入学习过程的交互。',
         tags: ['Next.js', 'Express', 'Gemini'],
         link: 'https://github.com/FrancesscaWY/SketchMind',
       },
     ],
-    methods: [
-      ['先还原场景', '把“谁在什么处境下遇到什么问题”讲清楚，再决定系统边界。'],
-      ['再拆成结构', '把模糊需求拆成数据、流程、接口、状态和评估方式。'],
-      ['小步验证', '用原型、实验或可复现实例确认判断，而不是只停留在想法。'],
-      ['保留记录', '写下设计取舍、失败原因和下一步问题，给之后的自己留线索。'],
+    capabilities: [
+      {
+        title: '研究与评估',
+        items: ['文献调研', '问题定义', '指标拆解', '实验设计', '结果分析'],
+      },
+      {
+        title: 'AI 应用系统',
+        items: ['RAG', 'LLM API', 'MCP', 'Agent Workflow', '多模态识别'],
+      },
+      {
+        title: '工程实现',
+        items: ['Vue / Next.js', 'FastAPI / NestJS', 'Prisma / SQLite', 'Git / Docker', '前后端联调'],
+      },
     ],
-    personal: [
+    notes: [
       {
-        title: '她喜欢有“真实对象”的技术',
-        body: '教育、康养、旅游、社交训练这些场景里，系统背后都有具体的人。她会更愿意从人的需求回到技术选择，而不是反过来。',
+        title: '我喜欢从“人真的怎么用”开始',
+        body: '教育、康养、旅游、社交训练这些场景里，技术不是孤立存在的。对我来说，一个系统好不好，最终要回到具体的人和具体的使用时刻。',
       },
       {
-        title: '她正在学习把表达变得更清楚',
-        body: '不只是把系统做完，也要能解释为什么这样做、如何评估、哪里还不可靠。这也是这个主页想承担的一部分工作。',
+        title: '我不太满足于“能跑就行”',
+        body: '我会反复问：依据在哪里？失败时怎样暴露？评估标准是什么？下一次迭代要验证什么？这些问题让我从工程实现走向研究表达。',
       },
       {
-        title: '她对工具保持好奇',
-        body: '从前后端到大模型接口，从 RAG 到 MCP，她乐于把新工具放进可运行的小系统里，再观察它真正改变了什么。',
+        title: '我也喜欢把复杂内容讲清楚',
+        body: '不管是项目文档、答辩展示还是网页文案，我都希望减少空泛形容词，多说结构、证据和真实取舍。',
       },
     ],
     evidence: [
-      ['2023', '进入西南大学软件工程专业。'],
-      ['2025', '参与 VirTour、EmoSpark 等 AI 应用系统，积累 RAG、MCP、数字人与多模态识别经验。'],
+      ['2023', '进入西南大学软件工程专业，开始系统学习计算机基础与软件工程。'],
+      ['2025', '参与 VirTour、EmoSpark 等 AI 应用项目，积累 RAG、MCP、数字人和多模态识别经验。'],
       ['2025', '第 19 届“挑战杯”全国大学生课外学术科技作品竞赛国家级特等奖。'],
       ['2026', 'RISE 相关成果被 The Web Conference 2026 Demo Track 录用，第三作者。'],
       ['2026', '获得软件著作权 1 项。'],
     ],
   },
   en: {
-    framework: [
-      ['Person', 'How she understands problems, learning, and systems.'],
-      ['Questions', 'Trustworthy AI, intelligent education, RAG reliability, and evaluation.'],
-      ['Work', 'A few selected projects with context, role, and takeaway.'],
-      ['Notes', 'Personal edges, interests, and thoughts still taking shape.'],
+    brief: [
+      ['Current', 'Software engineering undergraduate focused on trustworthy LLM systems and intelligent education.'],
+      ['Keywords', 'RAG, LLM evaluation, MCP, agentic tool use, and applied software engineering.'],
+      ['Looking for', 'Opportunities where real needs, research questions, and runnable systems meet.'],
     ],
-    interests: [
+    overview: [
+      ['Research direction', 'I study how LLM systems can be evaluated, explained, and constrained, especially in intelligent education.'],
+      ['Applied practice', 'I have worked on web systems, RAG applications, digital-human interaction, multimodal recognition, and agent workflows.'],
+      ['How I work', 'I break problems into definitions, workflows, interfaces, experiments, and deliverable results.'],
+      ['Personal angle', 'I am drawn to technology with real people behind it: learners, caregivers, travelers, and people who need support.'],
+    ],
+    focus: [
       {
-        title: 'What makes a system reliable?',
-        body: 'RAG, agents, and LLM applications should not merely run. They should expose evidence, respect boundaries, and respond steadily in real use.',
+        title: 'Trustworthy AI systems',
+        body: 'I care about whether a system can show evidence, expose uncertainty, control tool boundaries, and remain stable in real use.',
       },
       {
-        title: 'Can AI make learning more concrete?',
-        body: 'She cares about feedback, question quality, cognitive levels, and learning analytics: turning the vague idea of “learning happened” into observable signals.',
+        title: 'Intelligent education and learning assessment',
+        body: 'I want AI to do more than answer questions. I want it to help describe learning processes, question quality, cognitive levels, and feedback mechanisms.',
       },
       {
-        title: 'How can tool use become understandable?',
-        body: 'Across MCP, digital humans, retrieval, and web systems, she pays attention to whether a workflow can be debugged, explained, and reused.',
+        title: 'RAG and tool invocation',
+        body: 'I am interested in knowledge organization, retrieval augmentation, MCP interaction, and agent workflows because they decide whether models can enter real tasks.',
       },
     ],
     work: [
       {
         name: 'BEACON',
-        kicker: 'Question assessment · Research in progress',
-        summary:
-          'A study around LLMs and Bloom’s cognitive model, asking whether a question truly measures the intended level of thinking. It moved her from building functions toward defining evaluation problems.',
-        detail: 'Literature review, task formulation, method design, experiment framework, and preliminary analysis.',
-        tags: ['LLM Evaluation', 'Bloom', 'Educational AI'],
+        label: 'Research · LLM Evaluation',
+        problem: 'The question I am asking: does a test item actually measure the intended cognitive level?',
+        contribution:
+          'I work on literature review, task formulation, evaluation dimensions, experimental framework design, and preliminary analysis, turning “question quality” into something discussable and testable.',
+        outcome: 'Keywords: Bloom taxonomy, DOK, LLM-as-a-judge, educational assessment.',
+        tags: ['Bloom', 'LLM Evaluation', 'Educational AI'],
         link: null,
       },
       {
         name: 'RISE / Lingzhi Yuxue',
-        kicker: 'WWW 2026 Demo Track · Intelligent education',
-        summary:
-          'A lightweight intelligent learning system integrating RAG, MCP, digital-human interaction, immersive classrooms, and learning analytics for resource-constrained education.',
-        detail: 'Interaction workflows, immersive teaching modules, prototype integration, and LLM API coordination.',
+        label: 'WWW 2026 Demo Track · Intelligent Education',
+        problem: 'I helped build a lightweight intelligent learning system for resource-constrained education.',
+        contribution:
+          'I contributed to interaction workflows, immersive teaching modules, prototype integration, and front-end / LLM API coordination, connecting RAG, MCP, digital humans, and learning analytics.',
+        outcome: 'The work was accepted to The Web Conference 2026 Demo Track, where I am the third author.',
         tags: ['RAG', 'MCP', 'Digital Human'],
         link: null,
       },
       {
         name: 'VirTour',
-        kicker: 'Agent guidance · Virtual tourism',
-        summary:
-          'A guided-tour system spanning scenic narration, voice interaction, and panoramic roaming, connecting model responses with scene control.',
-        detail: 'Streaming TTS, MCP-based interaction flow, digital-human modules, and core front-end integration.',
+        label: 'Application · Agent-guided Tourism',
+        problem: 'I connected scenic knowledge QA, digital-human guidance, and panoramic roaming into an interactive system.',
+        contribution:
+          'I worked on streaming TTS, MCP-based tool invocation, digital-human modules, and core front-end integration, focusing on the path from model responses to scene control.',
+        outcome: 'The project won the National Special Prize in Challenge Cup.',
         tags: ['Agent', 'RAG', 'TTS'],
         link: 'https://github.com/FrancesscaWY/VirtualTour-Back',
       },
       {
         name: 'EmoSpark',
-        kicker: 'Multimodal recognition · Social support',
-        summary:
-          'A social-support system for emotion understanding and social training in children with autism, combining facial, speech, and text signals.',
-        detail: 'System architecture, FastAPI backend, video-stream emotion recognition, and API integration.',
+        label: 'Application · Multimodal AI',
+        problem: 'I worked on a support system for emotion understanding and social training for children with autism.',
+        contribution:
+          'I contributed to system architecture, FastAPI backend services, video-stream emotion recognition, and API integration, turning multimodal recognition into feedback and training flows.',
+        outcome: 'The project received a software copyright and shaped my understanding of AI boundaries in sensitive human-facing scenarios.',
         tags: ['FastAPI', 'OpenCV', 'Vue'],
         link: 'https://github.com/FrancesscaWY/Emotions-Attention-Identify',
       },
       {
         name: 'IntelliHealthCare',
-        kicker: 'Full-stack system · Smart eldercare',
-        summary:
-          'A healthcare and eldercare platform for seniors, families, and institutions, with health records, booking, admin flows, RAG retrieval, and agent runtime.',
-        detail: 'Service recommendation, health archive, admin functions, and agent-related product flows.',
+        label: 'Full-stack · Smart Eldercare',
+        problem: 'I contributed to an eldercare platform connecting seniors, families, and institutions within one system.',
+        contribution:
+          'I worked on service recommendation, health records, admin flows, and agent-related product pages, paying attention to consistency across roles and workflows.',
+        outcome: 'The project strengthened my experience with Vue 3, NestJS, Prisma, RAG, and multi-agent runtime collaboration.',
         tags: ['Vue 3', 'NestJS', 'Prisma'],
         link: 'https://github.com/FrancesscaWY/IntelliHealthCare',
       },
       {
         name: 'SketchMind',
-        kicker: 'AI feedback · Scientific sketching',
-        summary:
-          'A learning prototype built with Excalidraw, Next.js, Express, and Gemini for scientific sketch validation and AI feedback.',
-        detail: 'AI feedback, drawing-task validation, and teaching-oriented interaction design.',
+        label: 'Prototype · AI Feedback',
+        problem: 'I explored how AI can evaluate scientific sketching processes and provide feedback.',
+        contribution:
+          'I focused on drawing-task validation, upload analysis, and AI feedback experience, prototyping with Excalidraw, Next.js, Express, and Gemini.',
+        outcome: 'This helped me think about how AI feedback can become part of a learning interaction, not just a one-sentence suggestion.',
         tags: ['Next.js', 'Express', 'Gemini'],
         link: 'https://github.com/FrancesscaWY/SketchMind',
       },
     ],
-    methods: [
-      ['Restore the context', 'Clarify who meets which problem under what conditions before defining the system boundary.'],
-      ['Turn it into structure', 'Break ambiguous needs into data, workflow, interfaces, states, and evaluation.'],
-      ['Validate in small steps', 'Use prototypes, experiments, or reproducible examples instead of staying at the idea level.'],
-      ['Keep a trail', 'Write down tradeoffs, failure reasons, and next questions so future work has a starting point.'],
+    capabilities: [
+      {
+        title: 'Research and evaluation',
+        items: ['Literature review', 'Problem formulation', 'Metric design', 'Experiment design', 'Result analysis'],
+      },
+      {
+        title: 'AI application systems',
+        items: ['RAG', 'LLM APIs', 'MCP', 'Agent workflows', 'Multimodal recognition'],
+      },
+      {
+        title: 'Engineering implementation',
+        items: ['Vue / Next.js', 'FastAPI / NestJS', 'Prisma / SQLite', 'Git / Docker', 'Front-end and back-end integration'],
+      },
     ],
-    personal: [
+    notes: [
       {
-        title: 'She likes technology with real subjects',
-        body: 'Education, eldercare, tourism, and social training all involve concrete people. She tends to return from technology choices to human needs, not the other way around.',
+        title: 'I like starting from how people actually use things',
+        body: 'Education, eldercare, tourism, and social training are not abstract scenes. For me, whether a system is good eventually returns to concrete people and concrete moments of use.',
       },
       {
-        title: 'She is learning to make expression clearer',
-        body: 'Finishing a system is not enough. She also wants to explain why it is designed this way, how it should be evaluated, and where it remains unreliable.',
+        title: 'I am not satisfied with “it runs”',
+        body: 'I keep asking: where is the evidence, how does failure appear, what is the evaluation standard, and what should the next iteration verify? These questions move me from implementation toward research expression.',
       },
       {
-        title: 'She stays curious about tools',
-        body: 'From web stacks to LLM interfaces, from RAG to MCP, she likes putting new tools into small runnable systems and seeing what they actually change.',
+        title: 'I enjoy making complex things clear',
+        body: 'Whether in project documentation, presentations, or this homepage, I prefer structure, evidence, and real tradeoffs over vague adjectives.',
       },
     ],
     evidence: [
-      ['2023', 'Entered Software Engineering at Southwest University.'],
+      ['2023', 'Entered Software Engineering at Southwest University and began systematic training in computer science and software engineering.'],
       ['2025', 'Worked on AI application systems including VirTour and EmoSpark, gaining experience in RAG, MCP, digital humans, and multimodal recognition.'],
       ['2025', 'National Special Prize, Challenge Cup.'],
-      ['2026', 'RISE was accepted to The Web Conference 2026 Demo Track, with Yan Wei as third author.'],
+      ['2026', 'RISE was accepted to The Web Conference 2026 Demo Track, with me as the third author.'],
       ['2026', 'One software copyright.'],
     ],
   },
@@ -376,22 +381,37 @@ function applyLanguage() {
     const value = key.split('.').reduce((acc, part) => acc?.[part], content[state.lang]);
     if (typeof value === 'string') setText(key, value);
   });
-  renderFramework();
-  renderInterests();
+  renderBrief();
+  renderOverview();
+  renderFocus();
   renderWork();
-  renderMethods();
-  renderPersonal();
+  renderCapabilities();
+  renderNotes();
   renderEvidence();
   localStorage.setItem('lang', state.lang);
 }
 
-function renderFramework() {
-  const grid = document.querySelector('#frameworkGrid');
-  grid.innerHTML = data[state.lang].framework
+function renderBrief() {
+  const list = document.querySelector('#briefList');
+  list.innerHTML = data[state.lang].brief
+    .map(
+      ([label, text]) => `
+        <div>
+          <span>${label}</span>
+          <p>${text}</p>
+        </div>
+      `,
+    )
+    .join('');
+}
+
+function renderOverview() {
+  const grid = document.querySelector('#overviewGrid');
+  grid.innerHTML = data[state.lang].overview
     .map(
       ([title, body]) => `
         <article>
-          <strong>${title}</strong>
+          <h3>${title}</h3>
           <p>${body}</p>
         </article>
       `,
@@ -399,17 +419,14 @@ function renderFramework() {
     .join('');
 }
 
-function renderInterests() {
-  const list = document.querySelector('#interestList');
-  list.innerHTML = data[state.lang].interests
+function renderFocus() {
+  const list = document.querySelector('#focusList');
+  list.innerHTML = data[state.lang].focus
     .map(
-      (item, index) => `
-        <article class="interest-item reveal">
-          <span>${String(index + 1).padStart(2, '0')}</span>
-          <div>
-            <h3>${item.title}</h3>
-            <p>${item.body}</p>
-          </div>
+      (item) => `
+        <article class="focus-item reveal">
+          <h3>${item.title}</h3>
+          <p>${item.body}</p>
         </article>
       `,
     )
@@ -423,8 +440,8 @@ function renderWork() {
     .map(
       (item) => `
         <article class="work-card reveal">
-          <div class="work-heading">
-            <p>${item.kicker}</p>
+          <div class="work-meta">
+            <span>${item.label}</span>
             ${
               item.link
                 ? `<a href="${item.link}" target="_blank" rel="noreferrer" aria-label="${item.name} GitHub"><span class="button-icon code-icon" aria-hidden="true"></span></a>`
@@ -432,8 +449,20 @@ function renderWork() {
             }
           </div>
           <h3>${item.name}</h3>
-          <p>${item.summary}</p>
-          <p class="detail">${item.detail}</p>
+          <dl>
+            <div>
+              <dt>${state.lang === 'zh' ? '问题' : 'Problem'}</dt>
+              <dd>${item.problem}</dd>
+            </div>
+            <div>
+              <dt>${state.lang === 'zh' ? '我的工作' : 'My work'}</dt>
+              <dd>${item.contribution}</dd>
+            </div>
+            <div>
+              <dt>${state.lang === 'zh' ? '结果' : 'Outcome'}</dt>
+              <dd>${item.outcome}</dd>
+            </div>
+          </dl>
           <div class="tag-row">${item.tags.map((tag) => `<span>${tag}</span>`).join('')}</div>
         </article>
       `,
@@ -442,26 +471,26 @@ function renderWork() {
   observeReveals();
 }
 
-function renderMethods() {
-  const list = document.querySelector('#methodList');
-  list.innerHTML = data[state.lang].methods
+function renderCapabilities() {
+  const grid = document.querySelector('#capabilityGrid');
+  grid.innerHTML = data[state.lang].capabilities
     .map(
-      ([title, body]) => `
+      (group) => `
         <article>
-          <h3>${title}</h3>
-          <p>${body}</p>
+          <h3>${group.title}</h3>
+          <div class="tag-row">${group.items.map((item) => `<span>${item}</span>`).join('')}</div>
         </article>
       `,
     )
     .join('');
 }
 
-function renderPersonal() {
-  const grid = document.querySelector('#personalGrid');
-  grid.innerHTML = data[state.lang].personal
+function renderNotes() {
+  const grid = document.querySelector('#notesGrid');
+  grid.innerHTML = data[state.lang].notes
     .map(
       (item) => `
-        <article class="personal-card reveal">
+        <article class="note-card reveal">
           <h3>${item.title}</h3>
           <p>${item.body}</p>
         </article>
@@ -517,76 +546,6 @@ document.querySelector('#themeToggle').addEventListener('click', () => {
   applyTheme();
 });
 
-function animateField() {
-  const canvas = document.querySelector('#field');
-  const ctx = canvas.getContext('2d');
-  const ratio = window.devicePixelRatio || 1;
-  let width;
-  let height;
-  let points = [];
-
-  function resize() {
-    width = window.innerWidth;
-    height = window.innerHeight;
-    canvas.width = Math.floor(width * ratio);
-    canvas.height = Math.floor(height * ratio);
-    canvas.style.width = `${width}px`;
-    canvas.style.height = `${height}px`;
-    ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
-    const count = Math.min(48, Math.max(22, Math.floor(width / 34)));
-    points = Array.from({ length: count }, () => ({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      vx: (Math.random() - 0.5) * 0.1,
-      vy: (Math.random() - 0.5) * 0.1,
-      r: 0.8 + Math.random() * 0.9,
-    }));
-  }
-
-  function draw() {
-    ctx.clearRect(0, 0, width, height);
-    const isLight = document.documentElement.dataset.theme === 'light';
-    ctx.fillStyle = isLight ? 'rgba(64, 74, 66, 0.16)' : 'rgba(231, 225, 213, 0.18)';
-    ctx.strokeStyle = isLight ? 'rgba(64, 74, 66, 0.045)' : 'rgba(231, 225, 213, 0.055)';
-
-    points.forEach((point) => {
-      point.x += point.vx;
-      point.y += point.vy;
-      if (point.x < -20) point.x = width + 20;
-      if (point.x > width + 20) point.x = -20;
-      if (point.y < -20) point.y = height + 20;
-      if (point.y > height + 20) point.y = -20;
-
-      ctx.beginPath();
-      ctx.arc(point.x, point.y, point.r, 0, Math.PI * 2);
-      ctx.fill();
-    });
-
-    for (let i = 0; i < points.length; i += 1) {
-      for (let j = i + 1; j < points.length; j += 1) {
-        const dx = points[i].x - points[j].x;
-        const dy = points[i].y - points[j].y;
-        const distance = Math.hypot(dx, dy);
-        if (distance < 115) {
-          ctx.globalAlpha = (115 - distance) / 115;
-          ctx.beginPath();
-          ctx.moveTo(points[i].x, points[i].y);
-          ctx.lineTo(points[j].x, points[j].y);
-          ctx.stroke();
-          ctx.globalAlpha = 1;
-        }
-      }
-    }
-
-    requestAnimationFrame(draw);
-  }
-
-  resize();
-  window.addEventListener('resize', resize);
-  draw();
-}
-
 applyTheme();
 applyLanguage();
 observeReveals();
-animateField();
