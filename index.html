@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="魏艳 / Yan Wei, Software Engineering undergraduate at Southwest University. Portfolio in trustworthy LLM systems, RAG, intelligent education, and AI application engineering."
+      content="魏艳 / Yan Wei 的个人主页：关于她的方向、作品、工作方式与持续记录。"
     />
-    <meta name="theme-color" content="#111111" />
+    <meta name="theme-color" content="#f5f4ef" />
     <meta property="og:title" content="魏艳 / Yan Wei" />
     <meta
       property="og:description"
-      content="Personal homepage of Yan Wei: trustworthy LLM systems, RAG reliability, intelligent education, and system implementation."
+      content="A bilingual personal homepage for Yan Wei, featuring her interests, selected work, working style, and personal notes."
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://francesscawy.github.io/" />
@@ -29,14 +29,15 @@
           <span class="brand-mark">YW</span>
           <span class="brand-copy">
             <strong data-i18n="nav.name">魏艳</strong>
-            <small data-i18n="nav.role">Software Engineering</small>
+            <small data-i18n="nav.role">Personal homepage</small>
           </span>
         </a>
 
         <nav class="nav-links" aria-label="Primary">
-          <a href="#research" data-i18n="nav.research">Research</a>
-          <a href="#projects" data-i18n="nav.projects">Projects</a>
-          <a href="#trajectory" data-i18n="nav.trajectory">Trajectory</a>
+          <a href="#about" data-i18n="nav.about">About</a>
+          <a href="#questions" data-i18n="nav.questions">Questions</a>
+          <a href="#work" data-i18n="nav.work">Work</a>
+          <a href="#notes" data-i18n="nav.notes">Notes</a>
           <a href="#contact" data-i18n="nav.contact">Contact</a>
         </nav>
 
@@ -51,20 +52,20 @@
       </header>
 
       <main id="top">
-        <section class="hero section-grid">
+        <section class="hero">
           <div class="hero-copy reveal">
-            <p class="eyebrow" data-i18n="hero.eyebrow">LLM Systems · RAG · Intelligent Education</p>
+            <p class="eyebrow" data-i18n="hero.eyebrow">Personal Homepage</p>
             <h1>
               <span data-i18n="hero.name">魏艳</span>
-              <span data-i18n="hero.title">把可运行的系统，推进成可验证的研究问题。</span>
+              <span data-i18n="hero.title">在工程、研究与真实问题之间，慢慢搭桥。</span>
             </h1>
             <p class="hero-lede" data-i18n="hero.lede">
-              西南大学软件工程本科生，关注可信大模型应用系统、RAG 可靠性评估、LLM/Agent 应用安全与 AI 应用的数据基础设施。
+              软件工程本科生，关注可信大模型系统、智能教育与 AI 应用工程。比起把经历排成清单，她更希望这里能呈现一个持续学习、搭建、验证和整理问题的人。
             </p>
             <div class="hero-actions">
-              <a class="primary-link" href="#projects">
+              <a class="primary-link" href="#about">
                 <span class="button-icon arrow-icon" aria-hidden="true"></span>
-                <span data-i18n="hero.primary">View selected work</span>
+                <span data-i18n="hero.primary">先认识她</span>
               </a>
               <a class="secondary-link" href="https://github.com/FrancesscaWY" target="_blank" rel="noreferrer">
                 <span class="button-icon code-icon" aria-hidden="true"></span>
@@ -73,112 +74,116 @@
             </div>
           </div>
 
-          <aside class="profile-panel reveal" aria-label="Profile overview">
-            <div class="portrait-wrap identity-visual" aria-hidden="true">
+          <aside class="identity-card reveal" aria-label="Profile overview">
+            <div class="identity-top">
               <span class="identity-initials">YW</span>
-              <span class="identity-line"></span>
-              <span class="identity-keyword">RAG</span>
-              <span class="identity-keyword">LLM</span>
-              <span class="identity-keyword">MCP</span>
+              <div>
+                <p class="profile-name" data-i18n="hero.profileName">Yan Wei / 魏艳</p>
+                <p data-i18n="hero.profileMeta">Software Engineering · Southwest University</p>
+              </div>
             </div>
-            <div class="profile-facts">
-              <p class="profile-name" data-i18n="hero.profileName">Yan Wei / 魏艳</p>
-              <p data-i18n="hero.profileMeta">B.Eng. candidate · Southwest University · 2023-present</p>
-            </div>
+            <dl class="quiet-facts">
+              <div>
+                <dt data-i18n="hero.fact1Label">Currently</dt>
+                <dd data-i18n="hero.fact1">turning AI education prototypes into research questions</dd>
+              </div>
+              <div>
+                <dt data-i18n="hero.fact2Label">Often thinking about</dt>
+                <dd data-i18n="hero.fact2">RAG reliability, evaluation, and human-facing systems</dd>
+              </div>
+              <div>
+                <dt data-i18n="hero.fact3Label">This site</dt>
+                <dd data-i18n="hero.fact3">a public notebook, not a complete CV</dd>
+              </div>
+            </dl>
           </aside>
         </section>
 
-        <section class="signal-strip reveal" aria-label="Highlights">
-          <article>
-            <strong>12/117</strong>
-            <span data-i18n="signals.rank">Academic ranking</span>
-          </article>
-          <article>
-            <strong>WWW 2026</strong>
-            <span data-i18n="signals.www">Demo Track, third author</span>
-          </article>
-          <article>
-            <strong>2</strong>
-            <span data-i18n="signals.national">National-level project awards</span>
-          </article>
-          <article>
-            <strong>1</strong>
-            <span data-i18n="signals.copyright">Software copyright</span>
-          </article>
+        <section class="framework reveal" aria-labelledby="framework-title">
+          <div class="section-intro">
+            <p class="eyebrow" data-i18n="framework.eyebrow">Content Frame</p>
+            <h2 id="framework-title" data-i18n="framework.title">先读这个人，再看她做过什么。</h2>
+            <p data-i18n="framework.lede">
+              这个主页按“人、问题、作品、记录”组织。项目和奖项会留下来，但不抢走主页的重心。
+            </p>
+          </div>
+          <div class="framework-grid" id="frameworkGrid"></div>
         </section>
 
-        <section class="section-grid narrative" id="research">
-          <div class="section-heading reveal">
-            <p class="eyebrow" data-i18n="research.eyebrow">Research Direction</p>
-            <h2 data-i18n="research.title">从智能教育场景出发，研究大模型系统的可靠性。</h2>
+        <section class="split-section" id="about">
+          <div class="section-intro reveal">
+            <p class="eyebrow" data-i18n="about.eyebrow">About</p>
+            <h2 data-i18n="about.title">一个愿意把复杂问题慢慢拆开的人。</h2>
           </div>
-          <div class="narrative-copy reveal">
-            <p data-i18n="research.body1">
-              魏艳的经历有两条互相支撑的线：一条是把真实需求落成系统，另一条是把系统中的不确定性抽象成研究问题。她在 RAG、MCP、数字人交互、学习分析与题目质量评估中持续实践，尤其关注知识如何组织、模型如何调用工具、系统如何被评估与验证。
+          <div class="prose reveal">
+            <p data-i18n="about.body1">
+              魏艳的兴趣常常从真实场景里长出来：一次学习反馈、一段导览交互、一个照护流程，或者一道题目是否真正测到了思维层级。她习惯先把问题放回人的处境里，再思考系统该如何回应。
             </p>
-            <p data-i18n="research.body2">
-              当前重点包括基于 LLM 与 Bloom 认知模型的自动题目评估、可信 RAG 应用、Agent 工具交互流程以及面向资源受限场景的轻量化智能教育系统。
+            <p data-i18n="about.body2">
+              她喜欢工程的清晰，也喜欢研究里的追问。写代码时，她关心模块、接口和可维护性；做实验时，她关心定义、证据和可复现。这个主页会更像一个入口，保留她正在形成的方向，而不是把所有经历压缩成简历条目。
             </p>
           </div>
         </section>
 
-        <section class="publication-band reveal">
-          <div>
-            <p class="eyebrow" data-i18n="publication.eyebrow">Publication & Research Output</p>
-            <h2>RISE</h2>
-            <p data-i18n="publication.title">A Retrieval-Augmented Generation Enhanced Immersive System for Education</p>
-          </div>
-          <div class="publication-detail">
-            <p data-i18n="publication.venue">The Web Conference 2026 Demo Track · Third author</p>
-            <p data-i18n="publication.summary">
-              A lightweight web-based intelligent learning system integrating RAG, MCP, digital-human interaction, immersive classrooms, learning analytics, and attention monitoring.
-            </p>
-          </div>
-        </section>
-
-        <section class="section-block" id="projects">
+        <section class="section-block" id="questions">
           <div class="section-title-row reveal">
             <div>
-              <p class="eyebrow" data-i18n="projects.eyebrow">Selected Work</p>
-              <h2 data-i18n="projects.title">精选项目，而不是仓库清单。</h2>
+              <p class="eyebrow" data-i18n="questions.eyebrow">Questions</p>
+              <h2 data-i18n="questions.title">目前最牵引她的几个问题。</h2>
             </div>
-            <p data-i18n="projects.note">
-              Public GitHub repositories include coursework, forks, experiments, and systems. This page surfaces projects most relevant to research and software engineering practice.
+            <p data-i18n="questions.note">
+              这些不是固定标签，而是她在项目、论文和日常学习里反复回到的线索。
             </p>
           </div>
-          <div class="project-grid" id="projectGrid"></div>
+          <div class="interest-list" id="interestList"></div>
         </section>
 
-        <section class="section-grid skills">
-          <div class="section-heading reveal">
-            <p class="eyebrow" data-i18n="skills.eyebrow">Technical Foundation</p>
-            <h2 data-i18n="skills.title">能把想法拆成模块、接口、流程和可验证实验。</h2>
-          </div>
-          <div class="skill-cloud reveal" id="skillCloud"></div>
-        </section>
-
-        <section class="section-block" id="trajectory">
+        <section class="section-block" id="work">
           <div class="section-title-row reveal">
             <div>
-              <p class="eyebrow" data-i18n="trajectory.eyebrow">Trajectory</p>
-              <h2 data-i18n="trajectory.title">从应用落地到研究问题。</h2>
+              <p class="eyebrow" data-i18n="work.eyebrow">Selected Work</p>
+              <h2 data-i18n="work.title">作品少一点，语境多一点。</h2>
             </div>
+            <p data-i18n="work.note">
+              公开 GitHub 中有课程、实验、fork 和系统项目。这里保留能说明兴趣与能力走向的部分。
+            </p>
           </div>
-          <div class="timeline" id="timeline"></div>
+          <div class="work-list" id="workList"></div>
         </section>
 
-        <section class="section-grid awards">
-          <div class="section-heading reveal">
-            <p class="eyebrow" data-i18n="awards.eyebrow">Awards & Honors</p>
-            <h2 data-i18n="awards.title">项目、科研与学业共同构成的证据链。</h2>
+        <section class="split-section methods">
+          <div class="section-intro reveal">
+            <p class="eyebrow" data-i18n="methods.eyebrow">Ways of Working</p>
+            <h2 data-i18n="methods.title">她通常这样靠近一个问题。</h2>
           </div>
-          <div class="award-list reveal" id="awardList"></div>
+          <div class="method-list reveal" id="methodList"></div>
+        </section>
+
+        <section class="section-block" id="notes">
+          <div class="section-title-row reveal">
+            <div>
+              <p class="eyebrow" data-i18n="notes.eyebrow">Beyond Code</p>
+              <h2 data-i18n="notes.title">主页也应该留下不那么“项目化”的部分。</h2>
+            </div>
+            <p data-i18n="notes.note">
+              这部分会更轻，像一个正在生长的侧影。它解释她为什么会被这些问题吸引。
+            </p>
+          </div>
+          <div class="personal-grid" id="personalGrid"></div>
+        </section>
+
+        <section class="evidence-section">
+          <div class="section-intro reveal">
+            <p class="eyebrow" data-i18n="evidence.eyebrow">Evidence</p>
+            <h2 data-i18n="evidence.title">一些可以被核对的节点。</h2>
+          </div>
+          <div class="evidence-list reveal" id="evidenceList"></div>
         </section>
 
         <section class="contact-section reveal" id="contact">
           <div>
             <p class="eyebrow" data-i18n="contact.eyebrow">Contact</p>
-            <h2 data-i18n="contact.title">Open to research conversations around trustworthy AI systems.</h2>
+            <h2 data-i18n="contact.title">如果你也关心可信 AI 系统、智能教育或真实场景中的产品原型，欢迎联系。</h2>
           </div>
           <div class="contact-actions">
             <a href="mailto:weiyan_francessca@163.com">
@@ -194,7 +199,7 @@
       </main>
 
       <footer>
-        <span data-i18n="footer.built">Built for GitHub Pages with a bilingual, privacy-conscious portfolio structure.</span>
+        <span data-i18n="footer.built">A quieter bilingual homepage for public sharing, built with privacy in mind.</span>
         <a href="#top" data-i18n="footer.back">Back to top</a>
       </footer>
     </div>
