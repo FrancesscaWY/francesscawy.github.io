@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Homepage Lab Workflow</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f6f7f4;
+        --panel: #fff;
+        --ink: #1e241f;
+        --muted: #66716a;
+        --line: #dde4dd;
+        --accent: #2f6f5b;
+        --warn: #9a6b22;
+        --bad: #9d3d37;
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          "PingFang SC", "Microsoft YaHei", sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background:
+          linear-gradient(90deg, rgba(47, 111, 91, 0.06) 0 1px, transparent 1px),
+          linear-gradient(180deg, rgba(47, 111, 91, 0.05) 0 1px, transparent 1px),
+          var(--bg);
+        background-size: 64px 64px;
+        color: var(--ink);
+      }
+
+      .shell {
+        width: min(1180px, calc(100% - 36px));
+        margin: 0 auto;
+        padding: 28px 0 44px;
+      }
+
+      header {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 18px;
+        align-items: end;
+        margin-bottom: 20px;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      h1 {
+        margin-bottom: 8px;
+        font-size: clamp(1.45rem, 3vw, 2.2rem);
+        line-height: 1.15;
+      }
+
+      header p,
+      .muted,
+      .card p,
+      .event pre {
+        color: var(--muted);
+        line-height: 1.65;
+      }
+
+      .status-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        min-height: 36px;
+        padding: 0 12px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: var(--panel);
+        color: var(--accent);
+        font-weight: 800;
+      }
+
+      .dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: currentColor;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+        margin-bottom: 12px;
+      }
+
+      .main-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
+        gap: 12px;
+        align-items: start;
+      }
+
+      .card,
+      .event {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: color-mix(in srgb, var(--panel) 92%, transparent);
+        box-shadow: 0 10px 28px rgba(28, 42, 34, 0.06);
+      }
+
+      .card {
+        padding: 18px;
+      }
+
+      .card h2 {
+        margin-bottom: 10px;
+        font-size: 1rem;
+      }
+
+      .metric strong {
+        display: block;
+        margin-bottom: 4px;
+        font-size: 1.35rem;
+      }
+
+      .agent {
+        display: grid;
+        gap: 6px;
+        padding: 14px 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .agent:last-child {
+        border-bottom: 0;
+      }
+
+      .agent strong {
+        color: var(--ink);
+      }
+
+      .timeline {
+        display: grid;
+        gap: 12px;
+      }
+
+      .event {
+        overflow: hidden;
+      }
+
+      .event-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 14px 16px;
+        border-bottom: 1px solid var(--line);
+        background: rgba(47, 111, 91, 0.05);
+      }
+
+      .event-body {
+        display: grid;
+        gap: 12px;
+        padding: 16px;
+      }
+
+      .turn {
+        display: grid;
+        gap: 6px;
+      }
+
+      .turn h3 {
+        margin-bottom: 0;
+        color: var(--accent);
+        font-size: 0.86rem;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      pre {
+        max-height: 220px;
+        margin: 0;
+        overflow: auto;
+        white-space: pre-wrap;
+      }
+
+      .checkpoint {
+        display: grid;
+        gap: 8px;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .checkpoint:last-child {
+        border-bottom: 0;
+      }
+
+      .error {
+        color: var(--bad);
+      }
+
+      @media (max-width: 860px) {
+        header,
+        .main-grid,
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <header>
+        <div>
+          <h1>Homepage Lab Workflow</h1>
+          <p>两个 GPT-5.5 角色围绕魏艳个人主页进行方案生成、质量批评和回应，每 10 分钟存档，30 分钟收束。</p>
+        </div>
+        <div class="status-pill" id="statusPill"><span class="dot"></span><span>loading</span></div>
+      </header>
+
+      <section class="grid">
+        <article class="card metric">
+          <strong id="roundCount">0</strong>
+          <span class="muted">debate rounds</span>
+        </article>
+        <article class="card metric">
+          <strong id="checkpointCount">0</strong>
+          <span class="muted">checkpoints</span>
+        </article>
+        <article class="card metric">
+          <strong id="mode">-</strong>
+          <span class="muted">mode</span>
+        </article>
+        <article class="card metric">
+          <strong id="remaining">-</strong>
+          <span class="muted">remaining</span>
+        </article>
+      </section>
+
+      <section class="main-grid">
+        <aside class="card">
+          <h2>Agents</h2>
+          <div id="agents"></div>
+        </aside>
+
+        <main class="timeline" id="timeline"></main>
+      </section>
+
+      <section class="main-grid" style="margin-top: 12px">
+        <aside class="card">
+          <h2>Checkpoints</h2>
+          <div id="checkpoints"></div>
+        </aside>
+        <article class="card">
+          <h2>Final Summary</h2>
+          <pre id="finalSummary" class="muted">Waiting for the 30-minute discussion to finish...</pre>
+        </article>
+      </section>
+    </div>
+
+    <script type="module">
+      const stateUrl = './workflow-state/current.json';
+
+      function fmtTime(value) {
+        if (!value) return '-';
+        return new Date(value).toLocaleTimeString();
+      }
+
+      function remaining(endsAt) {
+        if (!endsAt) return '-';
+        const ms = new Date(endsAt).getTime() - Date.now();
+        if (ms <= 0) return '0m';
+        const minutes = Math.floor(ms / 60000);
+        const seconds = Math.floor((ms % 60000) / 1000);
+        return `${minutes}m ${seconds}s`;
+      }
+
+      function safe(text) {
+        return String(text || '').replace(/[&<>"']/g, (char) => ({
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          '"': '&quot;',
+          "'": '&#039;',
+        })[char]);
+      }
+
+      async function loadState() {
+        const response = await fetch(`${stateUrl}?t=${Date.now()}`, { cache: 'no-store' });
+        if (!response.ok) throw new Error(`state ${response.status}`);
+        return response.json();
+      }
+
+      function render(state) {
+        const statusPill = document.querySelector('#statusPill');
+        statusPill.querySelector('span:last-child').textContent = state.status || 'unknown';
+        statusPill.style.color =
+          state.status === 'failed' ? 'var(--bad)' : state.status === 'completed' ? 'var(--accent)' : 'var(--warn)';
+
+        document.querySelector('#roundCount').textContent = state.rounds?.length || 0;
+        document.querySelector('#checkpointCount').textContent = state.checkpoints?.length || 0;
+        document.querySelector('#mode').textContent = state.mode || '-';
+        document.querySelector('#remaining').textContent = remaining(state.endsAt);
+
+        document.querySelector('#agents').innerHTML = (state.agents || [])
+          .map(
+            (agent) => `
+              <div class="agent">
+                <strong>${safe(agent.name)}</strong>
+                <span class="muted">${safe(agent.model)} · ${safe(agent.responsibility)}</span>
+              </div>
+            `,
+          )
+          .join('');
+
+        const timeline = document.querySelector('#timeline');
+        timeline.innerHTML = (state.rounds || [])
+          .slice()
+          .reverse()
+          .map(
+            (round) => `
+              <article class="event">
+                <div class="event-head">
+                  <strong>Round ${round.round}</strong>
+                  <span class="muted">${fmtTime(round.startedAt)} - ${fmtTime(round.completedAt)}</span>
+                </div>
+                <div class="event-body">
+                  <div class="turn">
+                    <h3>Builder</h3>
+                    <pre>${safe(round.builder)}</pre>
+                  </div>
+                  <div class="turn">
+                    <h3>Critic</h3>
+                    <pre>${safe(round.critic || 'waiting...')}</pre>
+                  </div>
+                  <div class="turn">
+                    <h3>Builder Response</h3>
+                    <pre>${safe(round.response || 'waiting...')}</pre>
+                  </div>
+                </div>
+              </article>
+            `,
+          )
+          .join('');
+
+        document.querySelector('#checkpoints').innerHTML = (state.checkpoints || [])
+          .map(
+            (checkpoint) => `
+              <div class="checkpoint">
+                <strong>${safe(checkpoint.id)} · ${safe(checkpoint.reason)}</strong>
+                <span class="muted">${fmtTime(checkpoint.savedAt)} · round ${checkpoint.round}</span>
+                <span class="muted">${safe(checkpoint.summary)}</span>
+              </div>
+            `,
+          )
+          .join('');
+
+        document.querySelector('#finalSummary').textContent =
+          state.finalSummary || (state.errors || []).map((error) => error.message).join('\n') || 'Waiting for the 30-minute discussion to finish...';
+        document.querySelector('#finalSummary').classList.toggle('error', state.status === 'failed');
+      }
+
+      async function tick() {
+        try {
+          render(await loadState());
+        } catch (error) {
+          document.querySelector('#statusPill span:last-child').textContent = 'waiting for state';
+          document.querySelector('#finalSummary').textContent =
+            'No workflow state found yet. Start the workflow with npm run workflow:dry or npm run workflow.';
+        }
+      }
+
+      tick();
+      setInterval(tick, 3000);
+    </script>
+  </body>
+</html>

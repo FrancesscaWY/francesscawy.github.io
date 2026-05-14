@@ -5,3 +5,5 @@ dist/
 desktop-preview.png
 mobile-preview.png
 mobile-scrolled-preview.png
+workflow-state/*.json
+!workflow-state/.gitkeep
