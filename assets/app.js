@@ -12,33 +12,33 @@ const content = {
     },
     hero: {
       eyebrow: 'Personal Homepage',
-      title: '我是魏艳，我在做可信 AI 系统与智能教育应用。',
+      title: '你好，我是魏艳。我把 AI 原型做成可以被验证的系统。',
       lede:
-        '我目前学习软件工程，也在把 RAG、LLM 评估、智能体工具调用和真实场景系统结合起来。这个主页不是一份压缩简历，而是我向你介绍自己的入口：我关心什么、做过什么、正在怎样成长。',
-      primary: '看我做过什么',
+        '我常从一个具体场景开始：一道题如何衡量理解，一次导览如何不胡说，一个康养流程如何让不同角色接得上。现在我在智能教育、RAG 可靠性、LLM 评估和应用工程之间来回走。',
+      primary: '看看我的项目',
       name: '魏艳 / Yan Wei',
       role: '西南大学 · 软件工程本科',
     },
     focus: {
       eyebrow: 'Focus',
-      title: '我把兴趣放在“可用、可信、可解释”的 AI 应用上。',
-      lede: '我喜欢从一个真实问题出发，再追问系统如何组织知识、如何调用工具、如何被评估，以及最终是否真的帮助到人。',
+      title: '我关心 AI 系统在真实使用里是否站得住。',
+      lede: '我喜欢先看清楚人、场景和约束，再决定模型、检索、工具和界面各自该承担什么。',
     },
     work: {
       eyebrow: 'Selected Work',
-      title: '项目不是仓库清单，而是我理解问题的路径。',
-      lede: '我保留了最能说明研究兴趣、系统能力和应用意识的项目。每个项目都尽量写清楚问题、我的工作和可核对的结果。',
+      title: '这些项目记录了我如何从需求走到系统，再走向研究问题。',
+      lede: '我没有把所有仓库搬上来。这里选的是能说明我怎么定义问题、怎么协作实现、怎么复盘结果的部分。',
     },
     capability: {
       eyebrow: 'Capability',
-      title: '我希望自己既能提出问题，也能把系统做出来。',
+      title: '我在训练一种双向能力：能问，也能做。',
       lede:
         '对高校，我希望展现研究潜力和问题意识；对企业，我希望展现工程落地、协作与持续学习能力。它们在我的项目里是连在一起的。',
     },
     notes: {
       eyebrow: 'Notes',
-      title: '除了技术，我也想让你看到我如何看待问题。',
-      lede: '同领域的人认识彼此，不只靠项目名称。这里放一些更接近我的观察、偏好和工作习惯。',
+      title: '比技术标签更稳定的，是我靠近问题的方式。',
+      lede: '如果你也是同领域的人，也许这些小侧面比项目名更容易让我们开始聊天。',
     },
     evidence: {
       eyebrow: 'Milestones',
@@ -66,36 +66,36 @@ const content = {
     },
     hero: {
       eyebrow: 'Personal Homepage',
-      title: 'I am Yan Wei, and I build trustworthy AI systems for real learning scenarios.',
+      title: 'Hi, I’m Yan Wei. I turn AI prototypes into systems that can be tested.',
       lede:
-        'I study software engineering and work at the intersection of RAG, LLM evaluation, agentic tool use, and applied systems. This site is not a compressed CV. It is where I introduce what I care about, what I have built, and how I am growing.',
-      primary: 'View my work',
+        'I often start from a concrete scene: how a question measures understanding, how a tour guide avoids hallucination, or how an eldercare workflow connects different roles. I move between intelligent education, RAG reliability, LLM evaluation, and applied engineering.',
+      primary: 'See my projects',
       name: 'Yan Wei / 魏艳',
       role: 'Software Engineering · Southwest University',
     },
     focus: {
       eyebrow: 'Focus',
-      title: 'I am drawn to AI applications that are useful, trustworthy, and explainable.',
+      title: 'I care about whether AI systems hold up in real use.',
       lede:
-        'I usually start from a concrete problem, then ask how knowledge should be organized, how tools should be invoked, how the system can be evaluated, and whether it actually helps people.',
+        'I try to understand people, scenarios, and constraints before deciding what the model, retrieval layer, tools, and interface should each be responsible for.',
     },
     work: {
       eyebrow: 'Selected Work',
-      title: 'My projects are not a repository list. They show how I approach problems.',
+      title: 'These projects show how I move from needs to systems, then toward research questions.',
       lede:
-        'I selected projects that best reflect my research interests, system-building ability, and product awareness. Each one is described through the problem, my role, and a checkable outcome.',
+        'I did not copy every repository here. I selected work that best shows how I define problems, build with others, and reflect on outcomes.',
     },
     capability: {
       eyebrow: 'Capability',
-      title: 'I want to be able to ask good questions and build working systems.',
+      title: 'I am training a two-way ability: asking well and building well.',
       lede:
         'For academic audiences, I want to show research potential and problem formulation. For industry audiences, I want to show engineering execution, collaboration, and fast learning. In my work, these are connected.',
     },
     notes: {
       eyebrow: 'Notes',
-      title: 'Beyond technical labels, I want you to see how I look at problems.',
+      title: 'More stable than technical labels is how I approach problems.',
       lede:
-        'People in the same field get to know each other through more than project names. This section keeps a few observations, preferences, and working habits that feel closer to me.',
+        'If you work in a nearby field, these small notes may be a better beginning for conversation than project titles alone.',
     },
     evidence: {
       eyebrow: 'Milestones',
@@ -115,15 +115,15 @@ const content = {
 const data = {
   zh: {
     brief: [
-      ['现在', '软件工程本科生，关注可信大模型系统与智能教育。'],
-      ['关键词', 'RAG、LLM 评估、MCP、智能体工具调用、应用工程。'],
-      ['我在寻找', '能把真实需求、研究问题和可运行系统放在一起的机会。'],
+      ['现在', '软件工程本科生，正在把智能教育原型推进成更可靠的系统。'],
+      ['常用工具', 'RAG、LLM 评估、MCP、前后端系统、实验记录。'],
+      ['我在寻找', '愿意一起把真实需求、研究问题和可运行系统放在同一张桌上的伙伴。'],
     ],
     overview: [
-      ['研究兴趣', '我关注大模型系统如何被评估、解释和约束，尤其是在智能教育场景中。'],
-      ['工程实践', '我做过前后端系统、RAG 应用、数字人交互、多模态识别和智能体流程。'],
-      ['协作方式', '我习惯把问题拆成定义、流程、接口、实验和可交付结果。'],
-      ['个人侧面', '我喜欢有真实对象的技术：学习者、照护者、游客、需要辅助的人。'],
+      ['研究线索', '我关注大模型系统如何被评估、解释和约束，尤其是在智能教育里。'],
+      ['工程经验', '我做过前后端系统、RAG 应用、数字人交互、多模态识别和智能体流程。'],
+      ['协作习惯', '我习惯把模糊需求拆成定义、流程、接口、实验和交付物。'],
+      ['个人偏好', '我更容易被有真实对象的技术吸引：学习者、照护者、游客、需要辅助的人。'],
     ],
     focus: [
       {
@@ -143,17 +143,17 @@ const data = {
       {
         name: 'BEACON',
         label: 'Research · LLM Evaluation',
-        problem: '我想回答的问题是：一道题是否真正测到了预期认知层级？',
+        problem: '一道题看起来合理，不代表它真的测到了预期认知层级。我想把这种“不确定”拆开。',
         contribution:
           '我负责文献调研、任务定义、评估维度设计、实验框架搭建和阶段性结果分析，把“题目质量”拆成可讨论、可实验的指标。',
-        outcome: '关键词：Bloom 认知模型、DOK、LLM-as-a-judge、教育测评。',
+        outcome: '这让我开始把“题目质量”当作一个可定义、可比较、可实验的问题。',
         tags: ['Bloom', 'LLM Evaluation', 'Educational AI'],
         link: null,
       },
       {
         name: 'RISE / 灵知寓学',
         label: 'WWW 2026 Demo Track · Intelligent Education',
-        problem: '我参与构建面向资源受限教育场景的轻量化智能学习系统。',
+        problem: '如果学校没有很多硬件和预算，AI 学习系统还能不能轻量部署、可靠运行？',
         contribution:
           '我参与交互流程、沉浸式教学模块、系统原型集成，以及前端与 LLM 接口联调，让 RAG、MCP、数字人和学习分析形成完整体验。',
         outcome: '相关成果被 The Web Conference 2026 Demo Track 录用，我是第三作者。',
@@ -163,7 +163,7 @@ const data = {
       {
         name: 'VirTour',
         label: 'Application · Agent-guided Tourism',
-        problem: '我把景点知识问答、数字人导览和全景漫游连接成一个可交互系统。',
+        problem: '我想让虚拟导览不只是“播放介绍”，而是能听懂提问、切换场景、调用工具。',
         contribution:
           '我负责 TTS 流式播放链路、MCP 工具调用流程、数字人模块和前端核心集成，重点处理“模型回答”到“场景控制”的衔接。',
         outcome: '项目获第 19 届“挑战杯”国家级特等奖。',
@@ -173,7 +173,7 @@ const data = {
       {
         name: 'EmoSpark',
         label: 'Application · Multimodal AI',
-        problem: '我参与面向自闭症儿童情绪理解与社交训练的辅助系统。',
+        problem: '在情绪理解和社交训练里，AI 的输出要足够谨慎，也要能被照护者理解。',
         contribution:
           '我负责系统架构、FastAPI 后端、视频流情绪识别模块和接口集成，尝试把多模态识别变成可反馈、可训练的产品流程。',
         outcome: '项目获得软件著作权，沉淀了我对特殊人群场景中 AI 应用边界的理解。',
@@ -183,7 +183,7 @@ const data = {
       {
         name: 'IntelliHealthCare / 智诊康养',
         label: 'Full-stack · Smart Eldercare',
-        problem: '我参与智慧康养平台，把长者、家属和机构的不同流程放进同一个系统。',
+        problem: '康养场景里，长者、家属和机构看见的是同一件事的不同侧面，系统需要把这些流程接起来。',
         contribution:
           '我参与服务推荐、健康档案、后台管理和智能体能力相关页面联调，关注系统在多角色、多流程中的一致性。',
         outcome: '项目让我更熟悉 Vue 3、NestJS、Prisma、RAG 与多智能体运行时的工程协作。',
@@ -193,7 +193,7 @@ const data = {
       {
         name: 'SketchMind',
         label: 'Prototype · AI Feedback',
-        problem: '我探索科学草图学习中，AI 如何判断绘图过程并给出反馈。',
+        problem: '草图学习里的反馈不该只在最后出现；我想看 AI 能否进入绘图过程本身。',
         contribution:
           '我关注绘图任务验证、上传分析和 AI 反馈体验，使用 Excalidraw、Next.js、Express 与 Gemini 搭建原型。',
         outcome: '这个项目帮助我思考“AI 反馈”怎样从一句建议变成可嵌入学习过程的交互。',
@@ -239,15 +239,15 @@ const data = {
   },
   en: {
     brief: [
-      ['Current', 'Software engineering undergraduate focused on trustworthy LLM systems and intelligent education.'],
-      ['Keywords', 'RAG, LLM evaluation, MCP, agentic tool use, and applied software engineering.'],
-      ['Looking for', 'Opportunities where real needs, research questions, and runnable systems meet.'],
+      ['Current', 'Software engineering undergraduate turning intelligent education prototypes into more reliable systems.'],
+      ['Tools I reach for', 'RAG, LLM evaluation, MCP, web systems, and experiment notes.'],
+      ['Looking for', 'People who want to put real needs, research questions, and runnable systems on the same table.'],
     ],
     overview: [
-      ['Research direction', 'I study how LLM systems can be evaluated, explained, and constrained, especially in intelligent education.'],
-      ['Applied practice', 'I have worked on web systems, RAG applications, digital-human interaction, multimodal recognition, and agent workflows.'],
-      ['How I work', 'I break problems into definitions, workflows, interfaces, experiments, and deliverable results.'],
-      ['Personal angle', 'I am drawn to technology with real people behind it: learners, caregivers, travelers, and people who need support.'],
+      ['Research thread', 'I study how LLM systems can be evaluated, explained, and constrained, especially in intelligent education.'],
+      ['Applied work', 'I have worked on web systems, RAG applications, digital-human interaction, multimodal recognition, and agent workflows.'],
+      ['Working habit', 'I break vague needs into definitions, workflows, interfaces, experiments, and deliverables.'],
+      ['Personal pull', 'I am drawn to technology with real people behind it: learners, caregivers, travelers, and people who need support.'],
     ],
     focus: [
       {
@@ -267,17 +267,17 @@ const data = {
       {
         name: 'BEACON',
         label: 'Research · LLM Evaluation',
-        problem: 'The question I am asking: does a test item actually measure the intended cognitive level?',
+        problem: 'A question can look reasonable without measuring the intended cognitive level. I want to unpack that uncertainty.',
         contribution:
           'I work on literature review, task formulation, evaluation dimensions, experimental framework design, and preliminary analysis, turning “question quality” into something discussable and testable.',
-        outcome: 'Keywords: Bloom taxonomy, DOK, LLM-as-a-judge, educational assessment.',
+        outcome: 'This project helps me treat “question quality” as something definable, comparable, and testable.',
         tags: ['Bloom', 'LLM Evaluation', 'Educational AI'],
         link: null,
       },
       {
         name: 'RISE / Lingzhi Yuxue',
         label: 'WWW 2026 Demo Track · Intelligent Education',
-        problem: 'I helped build a lightweight intelligent learning system for resource-constrained education.',
+        problem: 'If a school has limited hardware and budget, can an AI learning system still be lightweight, deployable, and reliable?',
         contribution:
           'I contributed to interaction workflows, immersive teaching modules, prototype integration, and front-end / LLM API coordination, connecting RAG, MCP, digital humans, and learning analytics.',
         outcome: 'The work was accepted to The Web Conference 2026 Demo Track, where I am the third author.',
@@ -287,7 +287,7 @@ const data = {
       {
         name: 'VirTour',
         label: 'Application · Agent-guided Tourism',
-        problem: 'I connected scenic knowledge QA, digital-human guidance, and panoramic roaming into an interactive system.',
+        problem: 'I wanted virtual touring to be more than playback: it should understand questions, switch scenes, and call tools.',
         contribution:
           'I worked on streaming TTS, MCP-based tool invocation, digital-human modules, and core front-end integration, focusing on the path from model responses to scene control.',
         outcome: 'The project won the National Special Prize in Challenge Cup.',
@@ -297,7 +297,7 @@ const data = {
       {
         name: 'EmoSpark',
         label: 'Application · Multimodal AI',
-        problem: 'I worked on a support system for emotion understanding and social training for children with autism.',
+        problem: 'In emotion understanding and social training, AI output needs to be cautious and understandable to caregivers.',
         contribution:
           'I contributed to system architecture, FastAPI backend services, video-stream emotion recognition, and API integration, turning multimodal recognition into feedback and training flows.',
         outcome: 'The project received a software copyright and shaped my understanding of AI boundaries in sensitive human-facing scenarios.',
@@ -307,7 +307,7 @@ const data = {
       {
         name: 'IntelliHealthCare',
         label: 'Full-stack · Smart Eldercare',
-        problem: 'I contributed to an eldercare platform connecting seniors, families, and institutions within one system.',
+        problem: 'In eldercare, seniors, families, and institutions see different sides of the same situation; the system needs to connect those flows.',
         contribution:
           'I worked on service recommendation, health records, admin flows, and agent-related product pages, paying attention to consistency across roles and workflows.',
         outcome: 'The project strengthened my experience with Vue 3, NestJS, Prisma, RAG, and multi-agent runtime collaboration.',
@@ -317,7 +317,7 @@ const data = {
       {
         name: 'SketchMind',
         label: 'Prototype · AI Feedback',
-        problem: 'I explored how AI can evaluate scientific sketching processes and provide feedback.',
+        problem: 'Feedback in sketch-based learning should not only arrive at the end. I explored whether AI can enter the drawing process itself.',
         contribution:
           'I focused on drawing-task validation, upload analysis, and AI feedback experience, prototyping with Excalidraw, Next.js, Express, and Gemini.',
         outcome: 'This helped me think about how AI feedback can become part of a learning interaction, not just a one-sentence suggestion.',
