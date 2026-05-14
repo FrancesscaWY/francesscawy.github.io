@@ -25,6 +25,7 @@ const checkpointMs = checkpointMinutes * 60_000;
 
 const state = {
   status: 'starting',
+  phase: 'initializing',
   mode: dryRun ? 'dry-run' : 'live',
   model,
   startedAt: startedAt.toISOString(),
@@ -41,6 +42,12 @@ const state = {
       model,
       responsibility: 'Propose concrete homepage content, structure, and implementation improvements.',
       tone: 'first-person, human, academic-and-applied, concise',
+      status: 'idle',
+      stage: 'Waiting to start',
+      currentRound: 0,
+      turnCount: 0,
+      lastActiveAt: null,
+      lastMessage: 'Waiting for the workflow to begin.',
     },
     {
       id: 'critic',
@@ -48,13 +55,48 @@ const state = {
       model,
       responsibility: 'Evaluate homepage quality, compare against excellent personal sites, and challenge weak decisions.',
       tone: 'direct, evidence-based, design-aware',
+      status: 'idle',
+      stage: 'Waiting to start',
+      currentRound: 0,
+      turnCount: 0,
+      lastActiveAt: null,
+      lastMessage: 'Waiting for the builder proposal.',
     },
   ],
   checkpoints: [],
   rounds: [],
+  messages: [],
   finalSummary: null,
   errors: [],
 };
+
+function snippet(text, length = 180) {
+  const cleaned = String(text || '').replace(/\s+/g, ' ').trim();
+  if (cleaned.length <= length) return cleaned;
+  return `${cleaned.slice(0, length - 1)}...`;
+}
+
+function updateAgent(id, patch) {
+  const agent = state.agents.find((item) => item.id === id);
+  if (!agent) return;
+  Object.assign(agent, {
+    ...patch,
+    lastActiveAt: new Date().toISOString(),
+  });
+}
+
+function addMessage({ speaker, agentId = null, kind = 'note', round = state.activeRound, phase = state.phase, content }) {
+  state.messages.push({
+    id: `msg-${state.messages.length + 1}`,
+    at: new Date().toISOString(),
+    speaker,
+    agentId,
+    kind,
+    round,
+    phase,
+    content,
+  });
+}
 
 async function ensureStateDir() {
   await mkdir(stateDir, { recursive: true });
@@ -143,7 +185,7 @@ function fakeAgentResponse(role) {
 
 function builderPrompt(homepageContext) {
   return [
-    'You are Homepage Builder, a GPT-5.5 agent optimizing Yan Wei / 魏艳 personal homepage.',
+    'You are Homepage Builder, a GPT-5.5 agent optimizing Yan Wei / Wei Yan personal homepage.',
     'Goal: improve a bilingual personal homepage for social recognition, academic audiences, and industry audiences without using those as visible category titles.',
     'Style requirements: first person, human, not machine-written, not a resume template, concise typography, academic-and-applied minimal style.',
     'Task: propose specific content, structure, layout, and implementation improvements. Do not produce generic advice.',
@@ -156,7 +198,7 @@ function builderPrompt(homepageContext) {
 
 function criticPrompt(homepageContext, builderOutput) {
   return [
-    'You are Quality Critic, a GPT-5.5 agent reviewing Yan Wei / 魏艳 personal homepage.',
+    'You are Quality Critic, a GPT-5.5 agent reviewing Yan Wei / Wei Yan personal homepage.',
     'Compare against strong personal sites: academic personal pages, research portfolios, and personal digital gardens.',
     'Judge content architecture, human voice, credibility for academia, credibility for industry, visual density, typography, and navigation consistency.',
     'Be direct. Identify what still feels machine-written or fragmented. Give a score and concrete changes.',
@@ -193,6 +235,13 @@ async function checkpoint(reason) {
     summary: summarizeLatest(),
   };
   state.checkpoints.push(checkpoint);
+  addMessage({
+    speaker: 'System',
+    kind: 'checkpoint',
+    round: state.activeRound,
+    phase: 'checkpoint',
+    content: `${checkpoint.id} saved: ${checkpoint.summary}`,
+  });
   await writeFile(path.join(root, checkpoint.file), `${JSON.stringify(state, null, 2)}\n`, 'utf8');
   await saveState();
 }
@@ -206,10 +255,35 @@ function summarizeLatest() {
 async function runRound() {
   state.activeRound += 1;
   state.status = 'running';
+  state.phase = 'builder-proposal';
+  updateAgent('builder', {
+    status: 'thinking',
+    stage: 'Reading the current homepage and drafting a concrete proposal',
+    currentRound: state.activeRound,
+    lastMessage: 'Preparing a first-person, academic-and-applied homepage proposal.',
+  });
+  updateAgent('critic', {
+    status: 'waiting',
+    stage: 'Waiting for builder proposal',
+    currentRound: state.activeRound,
+    lastMessage: 'Waiting to review the builder output.',
+  });
+  addMessage({
+    speaker: 'System',
+    kind: 'round-start',
+    content: `Round ${state.activeRound} started.`,
+  });
   const homepageContext = await loadHomepageContext();
   await saveState();
 
   const builder = await callOpenAI({ role: 'builder', prompt: builderPrompt(homepageContext) });
+  updateAgent('builder', {
+    status: 'waiting',
+    stage: 'Proposal complete; waiting for critique',
+    currentRound: state.activeRound,
+    turnCount: state.agents.find((item) => item.id === 'builder').turnCount + 1,
+    lastMessage: snippet(builder),
+  });
   state.rounds.push({
     round: state.activeRound,
     startedAt: new Date().toISOString(),
@@ -218,20 +292,91 @@ async function runRound() {
     response: '',
     completedAt: null,
   });
+  addMessage({
+    speaker: 'Homepage Builder',
+    agentId: 'builder',
+    kind: 'proposal',
+    content: builder,
+  });
   await saveState();
 
+  state.phase = 'critic-review';
+  updateAgent('critic', {
+    status: 'reviewing',
+    stage: 'Comparing quality, structure, voice, and visual density',
+    currentRound: state.activeRound,
+    lastMessage: 'Reviewing the proposal against strong personal and academic sites.',
+  });
+  await saveState();
   const critic = await callOpenAI({ role: 'critic', prompt: criticPrompt(homepageContext, builder) });
   state.rounds.at(-1).critic = critic;
+  updateAgent('critic', {
+    status: 'complete',
+    stage: 'Critique complete',
+    currentRound: state.activeRound,
+    turnCount: state.agents.find((item) => item.id === 'critic').turnCount + 1,
+    lastMessage: snippet(critic),
+  });
+  addMessage({
+    speaker: 'Quality Critic',
+    agentId: 'critic',
+    kind: 'critique',
+    content: critic,
+  });
   await saveState();
 
+  state.phase = 'builder-response';
+  updateAgent('builder', {
+    status: 'responding',
+    stage: 'Accepting, rejecting, and prioritizing critique',
+    currentRound: state.activeRound,
+    lastMessage: 'Turning critique into an implementation-ready patch plan.',
+  });
+  await saveState();
   const response = await callOpenAI({ role: 'builder-response', prompt: responsePrompt(homepageContext, builder, critic) });
   state.rounds.at(-1).response = response;
   state.rounds.at(-1).completedAt = new Date().toISOString();
+  updateAgent('builder', {
+    status: 'complete',
+    stage: 'Round response complete',
+    currentRound: state.activeRound,
+    turnCount: state.agents.find((item) => item.id === 'builder').turnCount + 1,
+    lastMessage: snippet(response),
+  });
+  updateAgent('critic', {
+    status: 'waiting',
+    stage: 'Waiting for next round',
+    currentRound: state.activeRound,
+  });
+  addMessage({
+    speaker: 'Homepage Builder',
+    agentId: 'builder',
+    kind: 'response',
+    content: response,
+  });
   await saveState();
 }
 
 async function finalize() {
   state.status = 'finalizing';
+  state.phase = 'final-summary';
+  updateAgent('builder', {
+    status: 'finalizing',
+    stage: 'Consolidating agreed changes',
+    lastMessage: 'Summarizing the debate into a concrete next implementation plan.',
+  });
+  updateAgent('critic', {
+    status: 'finalizing',
+    stage: 'Checking unresolved disagreements',
+    lastMessage: 'Reviewing the debate for remaining risks.',
+  });
+  addMessage({
+    speaker: 'System',
+    kind: 'finalizing',
+    phase: 'final-summary',
+    content: 'The debate window has ended. Preparing final summary.',
+  });
+  await saveState();
   const homepageContext = await loadHomepageContext();
   const prompt = [
     'Summarize the completed 30-minute homepage optimization debate.',
@@ -243,6 +388,23 @@ async function finalize() {
   ].join('\n\n');
   state.finalSummary = await callOpenAI({ role: 'final', prompt });
   state.status = 'completed';
+  state.phase = 'completed';
+  updateAgent('builder', {
+    status: 'done',
+    stage: 'Workflow complete',
+    lastMessage: 'Final summary is ready.',
+  });
+  updateAgent('critic', {
+    status: 'done',
+    stage: 'Workflow complete',
+    lastMessage: 'Final summary is ready.',
+  });
+  addMessage({
+    speaker: 'System',
+    kind: 'completed',
+    phase: 'completed',
+    content: 'Workflow completed and final summary saved.',
+  });
   await checkpoint('final');
   await saveState();
 }
@@ -250,6 +412,14 @@ async function finalize() {
 async function main() {
   await ensureStateDir();
   state.status = 'running';
+  state.phase = 'running';
+  addMessage({
+    speaker: 'System',
+    kind: 'started',
+    round: 0,
+    phase: 'running',
+    content: `Workflow started in ${state.mode} mode with ${model}.`,
+  });
   await saveState();
 
   let nextCheckpointAt = startedAt.getTime() + checkpointMs;
@@ -262,6 +432,23 @@ async function main() {
         nextCheckpointAt += checkpointMs;
       }
     } catch (error) {
+      state.phase = 'error';
+      updateAgent('builder', {
+        status: 'error',
+        stage: 'Error encountered',
+        lastMessage: error.message,
+      });
+      updateAgent('critic', {
+        status: 'error',
+        stage: 'Error encountered',
+        lastMessage: error.message,
+      });
+      addMessage({
+        speaker: 'System',
+        kind: 'error',
+        phase: 'error',
+        content: error.message,
+      });
       state.errors.push({ at: new Date().toISOString(), message: error.message });
       await saveState();
       if (!dryRun) throw error;
@@ -277,6 +464,23 @@ async function main() {
 
 main().catch(async (error) => {
   state.status = 'failed';
+  state.phase = 'failed';
+  updateAgent('builder', {
+    status: 'failed',
+    stage: 'Workflow failed',
+    lastMessage: error.message,
+  });
+  updateAgent('critic', {
+    status: 'failed',
+    stage: 'Workflow failed',
+    lastMessage: error.message,
+  });
+  addMessage({
+    speaker: 'System',
+    kind: 'failed',
+    phase: 'failed',
+    content: error.message,
+  });
   state.errors.push({ at: new Date().toISOString(), message: error.message });
   await ensureStateDir();
   await saveState();

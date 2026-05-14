@@ -7,14 +7,17 @@
     <style>
       :root {
         color-scheme: light;
-        --bg: #f6f7f4;
-        --panel: #fff;
-        --ink: #1e241f;
-        --muted: #66716a;
-        --line: #dde4dd;
-        --accent: #2f6f5b;
-        --warn: #9a6b22;
-        --bad: #9d3d37;
+        --bg: #f7f8f5;
+        --panel: #ffffff;
+        --ink: #202721;
+        --muted: #647069;
+        --line: #dbe3dc;
+        --soft: #eef3ef;
+        --accent: #2e6f5b;
+        --accent-2: #405f8f;
+        --warn: #9b6d24;
+        --bad: #a3423c;
+        --shadow: 0 14px 34px rgba(26, 39, 32, 0.07);
         font-family:
           Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
           "PingFang SC", "Microsoft YaHei", sans-serif;
@@ -27,17 +30,23 @@
       body {
         margin: 0;
         background:
-          linear-gradient(90deg, rgba(47, 111, 91, 0.06) 0 1px, transparent 1px),
-          linear-gradient(180deg, rgba(47, 111, 91, 0.05) 0 1px, transparent 1px),
+          linear-gradient(90deg, rgba(46, 111, 91, 0.045) 0 1px, transparent 1px),
+          linear-gradient(180deg, rgba(64, 95, 143, 0.035) 0 1px, transparent 1px),
           var(--bg);
-        background-size: 64px 64px;
+        background-size: 72px 72px;
         color: var(--ink);
       }
 
+      button,
+      input,
+      select {
+        font: inherit;
+      }
+
       .shell {
-        width: min(1180px, calc(100% - 36px));
+        width: min(1220px, calc(100% - 36px));
         margin: 0 auto;
-        padding: 28px 0 44px;
+        padding: 26px 0 46px;
       }
 
       header {
@@ -45,7 +54,7 @@
         grid-template-columns: minmax(0, 1fr) auto;
         gap: 18px;
         align-items: end;
-        margin-bottom: 20px;
+        margin-bottom: 16px;
       }
 
       h1,
@@ -57,112 +66,261 @@
 
       h1 {
         margin-bottom: 8px;
-        font-size: clamp(1.45rem, 3vw, 2.2rem);
+        font-size: clamp(1.55rem, 2.8vw, 2.25rem);
         line-height: 1.15;
+        letter-spacing: 0;
       }
 
-      header p,
+      h2 {
+        margin-bottom: 12px;
+        font-size: 0.98rem;
+      }
+
+      h3 {
+        margin-bottom: 6px;
+        font-size: 0.9rem;
+      }
+
+      p,
       .muted,
-      .card p,
-      .event pre {
+      .card,
+      pre {
         color: var(--muted);
-        line-height: 1.65;
+        line-height: 1.62;
       }
 
-      .status-pill {
+      .lede {
+        max-width: 760px;
+        margin-bottom: 0;
+        font-size: 0.98rem;
+      }
+
+      .status-pill,
+      .agent-state,
+      .chip {
         display: inline-flex;
         align-items: center;
         gap: 8px;
-        min-height: 36px;
-        padding: 0 12px;
         border: 1px solid var(--line);
         border-radius: 999px;
         background: var(--panel);
         color: var(--accent);
-        font-weight: 800;
+        font-weight: 750;
+      }
+
+      .status-pill {
+        min-height: 36px;
+        padding: 0 12px;
+      }
+
+      .agent-state,
+      .chip {
+        min-height: 28px;
+        padding: 0 10px;
+        font-size: 0.78rem;
       }
 
       .dot {
-        width: 9px;
-        height: 9px;
+        width: 8px;
+        height: 8px;
         border-radius: 50%;
         background: currentColor;
       }
 
-      .grid {
+      .top-grid {
+        display: grid;
+        grid-template-columns: minmax(280px, 0.82fr) minmax(0, 1.18fr);
+        gap: 12px;
+        align-items: stretch;
+        margin-bottom: 12px;
+      }
+
+      .metric-grid {
         display: grid;
         grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 12px;
-        margin-bottom: 12px;
+        gap: 10px;
       }
 
       .main-grid {
         display: grid;
-        grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
+        grid-template-columns: minmax(280px, 0.78fr) minmax(0, 1.22fr);
         gap: 12px;
         align-items: start;
       }
 
+      .bottom-grid {
+        display: grid;
+        grid-template-columns: minmax(280px, 0.78fr) minmax(0, 1.22fr);
+        gap: 12px;
+        align-items: start;
+        margin-top: 12px;
+      }
+
       .card,
-      .event {
+      .event,
+      .message {
         border: 1px solid var(--line);
         border-radius: 8px;
-        background: color-mix(in srgb, var(--panel) 92%, transparent);
-        box-shadow: 0 10px 28px rgba(28, 42, 34, 0.06);
+        background: color-mix(in srgb, var(--panel) 94%, transparent);
+        box-shadow: var(--shadow);
       }
 
       .card {
-        padding: 18px;
+        padding: 16px;
       }
 
-      .card h2 {
-        margin-bottom: 10px;
-        font-size: 1rem;
+      .control-card {
+        display: grid;
+        gap: 14px;
+      }
+
+      .control-row {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      label {
+        display: grid;
+        gap: 6px;
+        color: var(--muted);
+        font-size: 0.78rem;
+        font-weight: 700;
+      }
+
+      input,
+      select {
+        width: 100%;
+        min-height: 34px;
+        padding: 6px 9px;
+        border: 1px solid var(--line);
+        border-radius: 7px;
+        background: #fff;
+        color: var(--ink);
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .primary-button,
+      .ghost-button {
+        min-height: 36px;
+        padding: 0 14px;
+        border-radius: 7px;
+        cursor: pointer;
+        font-weight: 800;
+      }
+
+      .primary-button {
+        border: 1px solid var(--accent);
+        background: var(--accent);
+        color: #fff;
+      }
+
+      .primary-button:disabled {
+        cursor: wait;
+        opacity: 0.68;
+      }
+
+      .ghost-button {
+        border: 1px solid var(--line);
+        background: #fff;
+        color: var(--ink);
+        text-decoration: none;
+      }
+
+      .start-note {
+        margin: 0;
+        font-size: 0.84rem;
+      }
+
+      .metric {
+        min-height: 96px;
       }
 
       .metric strong {
         display: block;
         margin-bottom: 4px;
-        font-size: 1.35rem;
+        color: var(--ink);
+        font-size: 1.28rem;
+      }
+
+      .agent-list,
+      .timeline,
+      .message-list,
+      .checkpoint-list {
+        display: grid;
+        gap: 12px;
       }
 
       .agent {
         display: grid;
-        gap: 6px;
-        padding: 14px 0;
-        border-bottom: 1px solid var(--line);
+        gap: 10px;
+        padding: 14px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fff;
       }
 
-      .agent:last-child {
-        border-bottom: 0;
+      .agent-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        align-items: start;
       }
 
-      .agent strong {
+      .agent strong,
+      .event strong,
+      .message strong,
+      .checkpoint strong {
         color: var(--ink);
       }
 
-      .timeline {
-        display: grid;
-        gap: 12px;
+      .agent-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
       }
 
-      .event {
+      .progress-track {
+        height: 8px;
+        overflow: hidden;
+        border-radius: 999px;
+        background: var(--soft);
+      }
+
+      .progress-fill {
+        width: 0%;
+        height: 100%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, var(--accent), var(--accent-2));
+        transition: width 240ms ease;
+      }
+
+      .event,
+      .message {
         overflow: hidden;
       }
 
-      .event-head {
+      .event-head,
+      .message-head {
         display: flex;
         justify-content: space-between;
         gap: 12px;
-        padding: 14px 16px;
+        padding: 12px 14px;
         border-bottom: 1px solid var(--line);
-        background: rgba(47, 111, 91, 0.05);
+        background: rgba(46, 111, 91, 0.055);
       }
 
-      .event-body {
+      .event-body,
+      .message-body {
         display: grid;
         gap: 12px;
-        padding: 16px;
+        padding: 14px;
       }
 
       .turn {
@@ -171,9 +329,8 @@
       }
 
       .turn h3 {
-        margin-bottom: 0;
         color: var(--accent);
-        font-size: 0.86rem;
+        font-size: 0.78rem;
         letter-spacing: 0.04em;
         text-transform: uppercase;
       }
@@ -183,6 +340,13 @@
         margin: 0;
         overflow: auto;
         white-space: pre-wrap;
+        font-family:
+          "SFMono-Regular", Consolas, "Liberation Mono", Menlo, "Microsoft YaHei", monospace;
+        font-size: 0.84rem;
+      }
+
+      .message pre {
+        max-height: 280px;
       }
 
       .checkpoint {
@@ -200,10 +364,20 @@
         color: var(--bad);
       }
 
-      @media (max-width: 860px) {
+      .empty {
+        padding: 16px;
+        border: 1px dashed var(--line);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.62);
+      }
+
+      @media (max-width: 900px) {
         header,
+        .top-grid,
         .main-grid,
-        .grid {
+        .bottom-grid,
+        .metric-grid,
+        .control-row {
           grid-template-columns: 1fr;
         }
       }
@@ -214,53 +388,126 @@
       <header>
         <div>
           <h1>Homepage Lab Workflow</h1>
-          <p>两个 GPT-5.5 角色围绕魏艳个人主页进行方案生成、质量批评和回应，每 10 分钟存档，30 分钟收束。</p>
+          <p class="lede">
+            两个 GPT-5.5 角色围绕魏艳个人主页进行方案生成、质量批评与回应。默认每 10 分钟保留一次状态，30
+            分钟结束，并把过程实时写入这个 dashboard。
+          </p>
         </div>
         <div class="status-pill" id="statusPill"><span class="dot"></span><span>loading</span></div>
       </header>
 
-      <section class="grid">
-        <article class="card metric">
-          <strong id="roundCount">0</strong>
-          <span class="muted">debate rounds</span>
+      <section class="top-grid">
+        <article class="card control-card">
+          <div>
+            <h2>Start Work</h2>
+            <p class="start-note muted" id="startNote">
+              在本地 Vite 开发服务器中可以直接启动；GitHub Pages 上只能查看已生成的工作流状态。
+            </p>
+          </div>
+          <div class="control-row">
+            <label>
+              Model
+              <input id="modelInput" value="gpt-5.5" />
+            </label>
+            <label>
+              Duration
+              <select id="durationInput">
+                <option value="30" selected>30 min</option>
+                <option value="10">10 min</option>
+                <option value="5">5 min</option>
+                <option value="1">1 min test</option>
+              </select>
+            </label>
+            <label>
+              Checkpoint
+              <select id="checkpointInput">
+                <option value="10" selected>10 min</option>
+                <option value="5">5 min</option>
+                <option value="1">1 min</option>
+                <option value="0.5">30 sec test</option>
+              </select>
+            </label>
+          </div>
+          <div class="actions">
+            <button class="primary-button" id="startButton" type="button">开始工作</button>
+            <button class="ghost-button" id="dryRunButton" type="button">快速测试</button>
+            <a class="ghost-button" href="./" target="_blank" rel="noreferrer">查看主页</a>
+          </div>
+          <div class="progress-track" aria-label="workflow progress">
+            <div class="progress-fill" id="workflowProgress"></div>
+          </div>
+          <p class="start-note muted" id="startResult">Waiting for a workflow state file...</p>
         </article>
-        <article class="card metric">
-          <strong id="checkpointCount">0</strong>
-          <span class="muted">checkpoints</span>
-        </article>
-        <article class="card metric">
-          <strong id="mode">-</strong>
-          <span class="muted">mode</span>
-        </article>
-        <article class="card metric">
-          <strong id="remaining">-</strong>
-          <span class="muted">remaining</span>
-        </article>
+
+        <section class="metric-grid">
+          <article class="card metric">
+            <strong id="roundCount">0</strong>
+            <span class="muted">debate rounds</span>
+          </article>
+          <article class="card metric">
+            <strong id="checkpointCount">0</strong>
+            <span class="muted">checkpoints</span>
+          </article>
+          <article class="card metric">
+            <strong id="mode">-</strong>
+            <span class="muted">mode</span>
+          </article>
+          <article class="card metric">
+            <strong id="remaining">-</strong>
+            <span class="muted">remaining</span>
+          </article>
+        </section>
       </section>
 
       <section class="main-grid">
-        <aside class="card">
-          <h2>Agents</h2>
-          <div id="agents"></div>
-        </aside>
+        <aside class="agent-list" id="agents"></aside>
 
-        <main class="timeline" id="timeline"></main>
+        <main class="card">
+          <h2>Live Discussion</h2>
+          <div class="message-list" id="messages"></div>
+        </main>
       </section>
 
-      <section class="main-grid" style="margin-top: 12px">
+      <section class="bottom-grid">
         <aside class="card">
           <h2>Checkpoints</h2>
-          <div id="checkpoints"></div>
+          <div class="checkpoint-list" id="checkpoints"></div>
         </aside>
         <article class="card">
-          <h2>Final Summary</h2>
-          <pre id="finalSummary" class="muted">Waiting for the 30-minute discussion to finish...</pre>
+          <h2>Round Details</h2>
+          <div class="timeline" id="timeline"></div>
         </article>
+      </section>
+
+      <section class="card" style="margin-top: 12px">
+        <h2>Final Summary</h2>
+        <pre id="finalSummary" class="muted">Waiting for the discussion to finish...</pre>
       </section>
     </div>
 
     <script type="module">
       const stateUrl = './workflow-state/current.json';
+      const startUrl = '/api/workflow/start';
+      const runningStatuses = new Set(['starting', 'running', 'finalizing']);
+
+      const nodes = {
+        statusPill: document.querySelector('#statusPill'),
+        roundCount: document.querySelector('#roundCount'),
+        checkpointCount: document.querySelector('#checkpointCount'),
+        mode: document.querySelector('#mode'),
+        remaining: document.querySelector('#remaining'),
+        agents: document.querySelector('#agents'),
+        messages: document.querySelector('#messages'),
+        checkpoints: document.querySelector('#checkpoints'),
+        timeline: document.querySelector('#timeline'),
+        finalSummary: document.querySelector('#finalSummary'),
+        startButton: document.querySelector('#startButton'),
+        dryRunButton: document.querySelector('#dryRunButton'),
+        startResult: document.querySelector('#startResult'),
+        modelInput: document.querySelector('#modelInput'),
+        durationInput: document.querySelector('#durationInput'),
+        checkpointInput: document.querySelector('#checkpointInput'),
+      };
 
       function fmtTime(value) {
         if (!value) return '-';
@@ -274,6 +521,15 @@
         const minutes = Math.floor(ms / 60000);
         const seconds = Math.floor((ms % 60000) / 1000);
         return `${minutes}m ${seconds}s`;
+      }
+
+      function progress(state) {
+        if (!state?.startedAt || !state?.endsAt) return 0;
+        const start = new Date(state.startedAt).getTime();
+        const end = new Date(state.endsAt).getTime();
+        const now = Date.now();
+        if (!Number.isFinite(start) || !Number.isFinite(end) || end <= start) return 0;
+        return Math.max(0, Math.min(100, ((now - start) / (end - start)) * 100));
       }
 
       function safe(text) {
@@ -292,30 +548,77 @@
         return response.json();
       }
 
-      function render(state) {
-        const statusPill = document.querySelector('#statusPill');
-        statusPill.querySelector('span:last-child').textContent = state.status || 'unknown';
-        statusPill.style.color =
-          state.status === 'failed' ? 'var(--bad)' : state.status === 'completed' ? 'var(--accent)' : 'var(--warn)';
+      function statusColor(status) {
+        if (['failed', 'error'].includes(status)) return 'var(--bad)';
+        if (['completed', 'done', 'complete'].includes(status)) return 'var(--accent)';
+        if (['thinking', 'reviewing', 'responding', 'finalizing', 'running'].includes(status)) return 'var(--warn)';
+        return 'var(--accent-2)';
+      }
 
-        document.querySelector('#roundCount').textContent = state.rounds?.length || 0;
-        document.querySelector('#checkpointCount').textContent = state.checkpoints?.length || 0;
-        document.querySelector('#mode').textContent = state.mode || '-';
-        document.querySelector('#remaining').textContent = remaining(state.endsAt);
-
-        document.querySelector('#agents').innerHTML = (state.agents || [])
+      function renderAgents(state) {
+        nodes.agents.innerHTML = (state.agents || [])
           .map(
             (agent) => `
-              <div class="agent">
-                <strong>${safe(agent.name)}</strong>
-                <span class="muted">${safe(agent.model)} · ${safe(agent.responsibility)}</span>
-              </div>
+              <article class="agent">
+                <div class="agent-head">
+                  <div>
+                    <strong>${safe(agent.name)}</strong>
+                    <div class="muted">${safe(agent.responsibility)}</div>
+                  </div>
+                  <span class="agent-state" style="color:${statusColor(agent.status)}">
+                    <span class="dot"></span>${safe(agent.status || 'idle')}
+                  </span>
+                </div>
+                <div class="agent-meta">
+                  <span class="chip">round ${safe(agent.currentRound ?? 0)}</span>
+                  <span class="chip">${safe(agent.turnCount ?? 0)} turns</span>
+                  <span class="chip">${safe(agent.model || state.model || '-')}</span>
+                </div>
+                <div>
+                  <strong>${safe(agent.stage || 'Waiting')}</strong>
+                  <p class="muted" style="margin: 4px 0 0">${safe(agent.lastMessage || '')}</p>
+                </div>
+                <small class="muted">last active: ${fmtTime(agent.lastActiveAt)}</small>
+              </article>
             `,
           )
           .join('');
+      }
 
-        const timeline = document.querySelector('#timeline');
-        timeline.innerHTML = (state.rounds || [])
+      function renderMessages(state) {
+        const messages = state.messages || [];
+        if (!messages.length) {
+          nodes.messages.innerHTML = '<div class="empty muted">No discussion yet. Click "开始工作" to start the workflow.</div>';
+          return;
+        }
+
+        nodes.messages.innerHTML = messages
+          .slice()
+          .reverse()
+          .map(
+            (message) => `
+              <article class="message">
+                <div class="message-head">
+                  <strong>${safe(message.speaker)}</strong>
+                  <span class="muted">${safe(message.kind)} · round ${safe(message.round)} · ${fmtTime(message.at)}</span>
+                </div>
+                <div class="message-body">
+                  <pre>${safe(message.content)}</pre>
+                </div>
+              </article>
+            `,
+          )
+          .join('');
+      }
+
+      function renderTimeline(state) {
+        const rounds = state.rounds || [];
+        if (!rounds.length) {
+          nodes.timeline.innerHTML = '<div class="empty muted">Round details will appear after the first builder proposal.</div>';
+          return;
+        }
+
+        nodes.timeline.innerHTML = rounds
           .slice()
           .reverse()
           .map(
@@ -343,36 +646,110 @@
             `,
           )
           .join('');
+      }
 
-        document.querySelector('#checkpoints').innerHTML = (state.checkpoints || [])
-          .map(
-            (checkpoint) => `
-              <div class="checkpoint">
-                <strong>${safe(checkpoint.id)} · ${safe(checkpoint.reason)}</strong>
-                <span class="muted">${fmtTime(checkpoint.savedAt)} · round ${checkpoint.round}</span>
-                <span class="muted">${safe(checkpoint.summary)}</span>
-              </div>
-            `,
-          )
-          .join('');
+      function renderCheckpoints(state) {
+        const checkpoints = state.checkpoints || [];
+        nodes.checkpoints.innerHTML = checkpoints.length
+          ? checkpoints
+              .map(
+                (checkpoint) => `
+                  <div class="checkpoint">
+                    <strong>${safe(checkpoint.id)} · ${safe(checkpoint.reason)}</strong>
+                    <span class="muted">${fmtTime(checkpoint.savedAt)} · round ${safe(checkpoint.round)}</span>
+                    <span class="muted">${safe(checkpoint.summary)}</span>
+                  </div>
+                `,
+              )
+              .join('')
+          : '<div class="empty muted">No checkpoints saved yet.</div>';
+      }
 
-        document.querySelector('#finalSummary').textContent =
-          state.finalSummary || (state.errors || []).map((error) => error.message).join('\n') || 'Waiting for the 30-minute discussion to finish...';
-        document.querySelector('#finalSummary').classList.toggle('error', state.status === 'failed');
+      function render(state) {
+        const status = state.status || 'unknown';
+        nodes.statusPill.querySelector('span:last-child').textContent = `${status}${state.phase ? ` · ${state.phase}` : ''}`;
+        nodes.statusPill.style.color = statusColor(status);
+
+        nodes.roundCount.textContent = state.rounds?.length || 0;
+        nodes.checkpointCount.textContent = state.checkpoints?.length || 0;
+        nodes.mode.textContent = state.mode || '-';
+        nodes.remaining.textContent = remaining(state.endsAt);
+
+        const progressFill = document.querySelector('#workflowProgress');
+        if (progressFill) progressFill.style.width = `${progress(state)}%`;
+
+        renderAgents(state);
+        renderMessages(state);
+        renderTimeline(state);
+        renderCheckpoints(state);
+
+        nodes.finalSummary.textContent =
+          state.finalSummary || (state.errors || []).map((error) => error.message).join('\n') || 'Waiting for the discussion to finish...';
+        nodes.finalSummary.classList.toggle('error', state.status === 'failed');
+
+        const isRunning = runningStatuses.has(status);
+        nodes.startButton.disabled = isRunning;
+        nodes.dryRunButton.disabled = isRunning;
       }
 
       async function tick() {
         try {
-          render(await loadState());
+          const state = await loadState();
+          render(state);
+          if (!runningStatuses.has(state.status)) {
+            nodes.startResult.textContent = `Last state loaded: ${state.status || 'unknown'} at ${fmtTime(state.lastSavedAt)}.`;
+          }
         } catch (error) {
-          document.querySelector('#statusPill span:last-child').textContent = 'waiting for state';
-          document.querySelector('#finalSummary').textContent =
-            'No workflow state found yet. Start the workflow with npm run workflow:dry or npm run workflow.';
+          nodes.statusPill.querySelector('span:last-child').textContent = 'waiting for state';
+          nodes.startButton.disabled = false;
+          nodes.dryRunButton.disabled = false;
+          nodes.finalSummary.textContent =
+            'No workflow state found yet. Use the buttons above on the local dev server, or run npm run workflow / npm run workflow:dry.';
         }
       }
 
+      async function startWorkflow({ dryRun }) {
+        nodes.startButton.disabled = true;
+        nodes.dryRunButton.disabled = true;
+        nodes.startResult.textContent = dryRun ? 'Starting quick dry-run...' : 'Starting the 30-minute workflow...';
+
+        const duration = dryRun ? 1 : Number(nodes.durationInput.value);
+        const checkpoint = dryRun ? 0.5 : Number(nodes.checkpointInput.value);
+        const interval = dryRun ? 5 : 90;
+
+        try {
+          const response = await fetch(startUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              model: nodes.modelInput.value,
+              duration,
+              checkpoint,
+              interval,
+              dryRun,
+            }),
+          });
+          const result = await response.json().catch(() => ({}));
+          if (!response.ok) throw new Error(result.message || `HTTP ${response.status}`);
+          nodes.startResult.textContent = `${result.message} PID: ${result.pid || '-'}`;
+          setTimeout(tick, 600);
+        } catch (error) {
+          nodes.startButton.disabled = false;
+          nodes.dryRunButton.disabled = false;
+          nodes.startResult.textContent =
+            `Start failed: ${error.message}. Make sure you are on npm run dev; GitHub Pages cannot start local processes.`;
+        }
+      }
+
+      nodes.startButton.addEventListener('click', () => startWorkflow({ dryRun: false }));
+      nodes.dryRunButton.addEventListener('click', () => startWorkflow({ dryRun: true }));
+
       tick();
       setInterval(tick, 3000);
+      setInterval(() => {
+        const stateStatus = nodes.statusPill.querySelector('span:last-child').textContent;
+        if (stateStatus.includes('running') || stateStatus.includes('finalizing')) tick();
+      }, 1000);
     </script>
   </body>
 </html>
