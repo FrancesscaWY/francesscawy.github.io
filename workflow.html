@@ -565,6 +565,8 @@
       const stateUrl = './workflow-state/current.json';
       const briefUrl = '/api/workflow/brief';
       const startUrl = '/api/workflow/start';
+      const localBriefKey = 'homepage-lab-brief';
+      const hasLocalApi = ['127.0.0.1', 'localhost', '[::1]'].includes(window.location.hostname);
       const runningStatuses = new Set(['starting', 'running', 'finalizing']);
 
       const nodes = {
@@ -632,6 +634,44 @@
         })[char]);
       }
 
+      function defaultBrief() {
+        return {
+          active: null,
+          history: [],
+          lastUpdatedAt: null,
+          mode: hasLocalApi ? 'api' : 'browser',
+        };
+      }
+
+      function readLocalBrief() {
+        try {
+          return JSON.parse(localStorage.getItem(localBriefKey)) || defaultBrief();
+        } catch {
+          return defaultBrief();
+        }
+      }
+
+      function writeLocalBrief(brief) {
+        localStorage.setItem(localBriefKey, JSON.stringify(brief));
+      }
+
+      function buildBriefEntry({ text, note, source }) {
+        const current = readLocalBrief();
+        const entry = {
+          id: `req-${(current.history?.length || 0) + 1}`,
+          text,
+          note: note || null,
+          source,
+          createdAt: new Date().toISOString(),
+        };
+        return {
+          active: entry,
+          history: [entry, ...(current.history || [])].slice(0, 24),
+          lastUpdatedAt: entry.createdAt,
+          mode: 'browser',
+        };
+      }
+
       async function loadState() {
         const response = await fetch(`${stateUrl}?t=${Date.now()}`, { cache: 'no-store' });
         if (!response.ok) throw new Error(`state ${response.status}`);
@@ -639,9 +679,15 @@
       }
 
       async function loadBrief() {
+        if (!hasLocalApi) {
+          return readLocalBrief();
+        }
+
         const response = await fetch(`${briefUrl}?t=${Date.now()}`, { cache: 'no-store' });
-        if (!response.ok) throw new Error(`brief ${response.status}`);
-        return response.json();
+        if (!response.ok) return readLocalBrief();
+        const brief = await response.json();
+        if (brief?.active) writeLocalBrief({ ...brief, mode: 'api' });
+        return { ...brief, mode: 'api' };
       }
 
       function statusColor(status) {
@@ -655,7 +701,7 @@
         const active = brief?.active;
         nodes.activeRequirement.textContent = active?.text || '暂无已保存需求';
         nodes.requirementStatus.textContent = active
-          ? `已保存：${fmtDate(active.createdAt)}`
+          ? `${brief?.mode === 'api' ? '已保存到本地工作流' : '已暂存到浏览器'}：${fmtDate(active.createdAt)}`
           : '尚未保存新需求';
 
         const history = Array.isArray(brief?.history) ? brief.history : [];
@@ -826,6 +872,7 @@
           nodes.startButton.disabled = false;
           nodes.dryRunButton.disabled = false;
           nodes.saveRequirementButton.disabled = false;
+          renderBrief(await loadBrief().catch(() => readLocalBrief()));
           nodes.finalSummary.textContent =
             'No workflow state found yet. Use the buttons above on the local dev server, or run npm run workflow / npm run workflow:dry.';
         }
@@ -844,6 +891,14 @@
         nodes.requirementStatus.textContent = '正在保存需求...';
 
         try {
+          if (!hasLocalApi) {
+            const brief = buildBriefEntry({ text, note, source: 'browser' });
+            writeLocalBrief(brief);
+            renderBrief(brief);
+            nodes.requirementStatus.textContent = '已暂存到浏览器。GitHub Pages 不能写入工作流文件，请在本地 dashboard 启动正式流程。';
+            return;
+          }
+
           const response = await fetch(briefUrl, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -851,10 +906,14 @@
           });
           const result = await response.json().catch(() => ({}));
           if (!response.ok) throw new Error(result.message || `HTTP ${response.status}`);
+          writeLocalBrief({ ...result.brief, mode: 'api' });
           nodes.requirementStatus.textContent = `需求已保存：${fmtDate(result.brief?.lastUpdatedAt)}`;
           await tick();
         } catch (error) {
-          nodes.requirementStatus.textContent = `保存失败：${error.message}`;
+          const brief = buildBriefEntry({ text, note, source: 'browser-fallback' });
+          writeLocalBrief(brief);
+          renderBrief(brief);
+          nodes.requirementStatus.textContent = `接口不可用，已暂存到浏览器：${error.message}`;
         } finally {
           nodes.saveRequirementButton.disabled = false;
         }
@@ -872,6 +931,15 @@
         try {
           const requirementText = nodes.requirementInput.value.trim();
           const requirementNote = nodes.requirementNoteInput.value.trim();
+          if (!hasLocalApi) {
+            if (requirementText) {
+              const brief = buildBriefEntry({ text: requirementText, note: requirementNote, source: 'browser' });
+              writeLocalBrief(brief);
+              renderBrief(brief);
+            }
+            throw new Error('GitHub Pages 是静态站，不能启动本地 workflow。请打开 http://127.0.0.1:5173/workflow.html 后再开始工作。');
+          }
+
           const response = await fetch(startUrl, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
