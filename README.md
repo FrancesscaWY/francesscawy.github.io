@@ -18,8 +18,9 @@ This repo includes a local workflow for homepage optimization:
 - `Homepage Builder`: proposes content, layout, and implementation improvements.
 - `Quality Critic`: evaluates the homepage against strong personal/research sites and challenges weak decisions.
 - The runner writes live state, agent status, debate messages, checkpoints, and final summary to `workflow-state/current.json`.
-- `workflow.html` visualizes the two agents, their current stage, discussion stream, round details, and checkpoint history.
+- `workflow.html` visualizes the two agents, their current stage, discussion stream, round details, checkpoint history, and the current requirement brief.
 - In local dev mode, the dashboard can start the workflow directly through the `开始工作` button.
+- Use the `新需求` panel first when you want to change direction before the next round.
 
 Run with OpenAI API:
 

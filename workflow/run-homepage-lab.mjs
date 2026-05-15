@@ -5,6 +5,7 @@ import path from 'node:path';
 const root = process.cwd();
 const stateDir = path.join(root, 'workflow-state');
 const currentPath = path.join(stateDir, 'current.json');
+const briefPath = path.join(stateDir, 'brief.json');
 
 const args = new Map(
   process.argv.slice(2).map((arg) => {
@@ -76,6 +77,24 @@ function snippet(text, length = 180) {
   return `${cleaned.slice(0, length - 1)}...`;
 }
 
+async function loadBrief() {
+  try {
+    const raw = await readFile(briefPath, 'utf8');
+    const brief = JSON.parse(raw);
+    return {
+      active: brief.active || null,
+      history: Array.isArray(brief.history) ? brief.history : [],
+      lastUpdatedAt: brief.lastUpdatedAt || null,
+    };
+  } catch {
+    return {
+      active: null,
+      history: [],
+      lastUpdatedAt: null,
+    };
+  }
+}
+
 function updateAgent(id, patch) {
   const agent = state.agents.find((item) => item.id === id);
   if (!agent) return;
@@ -112,6 +131,30 @@ async function loadHomepageContext() {
     parts.push(`--- ${file} ---\n${content.slice(0, 24_000)}`);
   }
   return parts.join('\n\n');
+}
+
+function requirementPrompt(brief) {
+  if (!brief?.active?.text) {
+    return 'Latest request from dashboard: keep improving the homepage with the same style constraints and adapt to the most recent visible feedback.';
+  }
+
+  const lines = [
+    'Latest request from dashboard:',
+    brief.active.text,
+  ];
+
+  if (brief.active.note) {
+    lines.push(`Note: ${brief.active.note}`);
+  }
+
+  if (brief.history?.length > 1) {
+    lines.push('Recent request history:');
+    for (const item of brief.history.slice(1, 4)) {
+      lines.push(`- ${item.text}`);
+    }
+  }
+
+  return lines.join('\n');
 }
 
 async function saveState() {
@@ -184,11 +227,13 @@ function fakeAgentResponse(role) {
 }
 
 function builderPrompt(homepageContext) {
+  const brief = state.brief || { active: null, history: [] };
   return [
     'You are Homepage Builder, a GPT-5.5 agent optimizing Yan Wei / Wei Yan personal homepage.',
     'Goal: improve a bilingual personal homepage for social recognition, academic audiences, and industry audiences without using those as visible category titles.',
     'Style requirements: first person, human, not machine-written, not a resume template, concise typography, academic-and-applied minimal style.',
     'Task: propose specific content, structure, layout, and implementation improvements. Do not produce generic advice.',
+    requirementPrompt(brief),
     'Current homepage source:',
     homepageContext,
     'Prior debate:',
@@ -197,11 +242,13 @@ function builderPrompt(homepageContext) {
 }
 
 function criticPrompt(homepageContext, builderOutput) {
+  const brief = state.brief || { active: null, history: [] };
   return [
     'You are Quality Critic, a GPT-5.5 agent reviewing Yan Wei / Wei Yan personal homepage.',
     'Compare against strong personal sites: academic personal pages, research portfolios, and personal digital gardens.',
     'Judge content architecture, human voice, credibility for academia, credibility for industry, visual density, typography, and navigation consistency.',
     'Be direct. Identify what still feels machine-written or fragmented. Give a score and concrete changes.',
+    requirementPrompt(brief),
     'Current homepage source:',
     homepageContext,
     'Builder proposal to critique:',
@@ -212,10 +259,12 @@ function criticPrompt(homepageContext, builderOutput) {
 }
 
 function responsePrompt(homepageContext, builderOutput, criticOutput) {
+  const brief = state.brief || { active: null, history: [] };
   return [
     'You are Homepage Builder responding to the critic.',
     'Decide which critiques to accept, reject, or refine. Produce a prioritized patch plan for the homepage.',
     'The final answer should be concrete enough for an engineer to edit index.html, assets/app.js, and assets/styles.css.',
+    requirementPrompt(brief),
     'Current homepage source:',
     homepageContext,
     'Your proposal:',
@@ -256,6 +305,7 @@ async function runRound() {
   state.activeRound += 1;
   state.status = 'running';
   state.phase = 'builder-proposal';
+  state.brief = await loadBrief();
   updateAgent('builder', {
     status: 'thinking',
     stage: 'Reading the current homepage and drafting a concrete proposal',
@@ -360,6 +410,7 @@ async function runRound() {
 async function finalize() {
   state.status = 'finalizing';
   state.phase = 'final-summary';
+  state.brief = await loadBrief();
   updateAgent('builder', {
     status: 'finalizing',
     stage: 'Consolidating agreed changes',
@@ -413,6 +464,7 @@ async function main() {
   await ensureStateDir();
   state.status = 'running';
   state.phase = 'running';
+  state.brief = await loadBrief();
   addMessage({
     speaker: 'System',
     kind: 'started',

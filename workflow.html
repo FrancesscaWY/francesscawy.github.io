@@ -39,6 +39,7 @@
 
       button,
       input,
+      textarea,
       select {
         font: inherit;
       }
@@ -68,7 +69,6 @@
         margin-bottom: 8px;
         font-size: clamp(1.55rem, 2.8vw, 2.25rem);
         line-height: 1.15;
-        letter-spacing: 0;
       }
 
       h2 {
@@ -129,7 +129,7 @@
 
       .top-grid {
         display: grid;
-        grid-template-columns: minmax(280px, 0.82fr) minmax(0, 1.18fr);
+        grid-template-columns: minmax(320px, 1fr) minmax(280px, 0.84fr);
         gap: 12px;
         align-items: stretch;
         margin-bottom: 12px;
@@ -141,7 +141,8 @@
         gap: 10px;
       }
 
-      .main-grid {
+      .main-grid,
+      .bottom-grid {
         display: grid;
         grid-template-columns: minmax(280px, 0.78fr) minmax(0, 1.22fr);
         gap: 12px;
@@ -149,10 +150,6 @@
       }
 
       .bottom-grid {
-        display: grid;
-        grid-template-columns: minmax(280px, 0.78fr) minmax(0, 1.22fr);
-        gap: 12px;
-        align-items: start;
         margin-top: 12px;
       }
 
@@ -169,6 +166,11 @@
         padding: 16px;
       }
 
+      .stack {
+        display: grid;
+        gap: 12px;
+      }
+
       .control-card {
         display: grid;
         gap: 14px;
@@ -177,6 +179,11 @@
       .control-row {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .field-row {
+        display: grid;
         gap: 10px;
       }
 
@@ -189,14 +196,20 @@
       }
 
       input,
-      select {
+      select,
+      textarea {
         width: 100%;
         min-height: 34px;
-        padding: 6px 9px;
+        padding: 8px 10px;
         border: 1px solid var(--line);
         border-radius: 7px;
         background: #fff;
         color: var(--ink);
+      }
+
+      textarea {
+        min-height: 104px;
+        resize: vertical;
       }
 
       .actions {
@@ -233,6 +246,22 @@
         text-decoration: none;
       }
 
+      .small-button {
+        min-height: 30px;
+        padding: 0 10px;
+        border: 1px solid var(--line);
+        border-radius: 7px;
+        background: #fff;
+        color: var(--ink);
+        cursor: pointer;
+        font-weight: 700;
+      }
+
+      .small-button.primary {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+
       .start-note {
         margin: 0;
         font-size: 0.84rem;
@@ -252,7 +281,8 @@
       .agent-list,
       .timeline,
       .message-list,
-      .checkpoint-list {
+      .checkpoint-list,
+      .brief-history {
         display: grid;
         gap: 12px;
       }
@@ -276,7 +306,8 @@
       .agent strong,
       .event strong,
       .message strong,
-      .checkpoint strong {
+      .checkpoint strong,
+      .brief-item strong {
         color: var(--ink);
       }
 
@@ -360,6 +391,17 @@
         border-bottom: 0;
       }
 
+      .brief-item {
+        display: grid;
+        gap: 6px;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .brief-item:last-child {
+        border-bottom: 0;
+      }
+
       .error {
         color: var(--bad);
       }
@@ -389,14 +431,37 @@
         <div>
           <h1>Homepage Lab Workflow</h1>
           <p class="lede">
-            两个 GPT-5.5 角色围绕魏艳个人主页进行方案生成、质量批评与回应。默认每 10 分钟保留一次状态，30
-            分钟结束，并把过程实时写入这个 dashboard。
+            这是主页修改的工作台。你先写新需求，再启动下一轮修改；Builder 和 Critic 会围绕这条需求展开讨论，dashboard 会实时展示状态、记录和结果。
           </p>
         </div>
         <div class="status-pill" id="statusPill"><span class="dot"></span><span>loading</span></div>
       </header>
 
       <section class="top-grid">
+        <article class="card control-card">
+          <div>
+            <h2>新需求</h2>
+            <p class="start-note muted">
+              每次修改前都先在这里写要求。保存后，它会进入下一轮 workflow 的 prompt。
+            </p>
+          </div>
+          <div class="field-row">
+            <label>
+              需求内容
+              <textarea id="requirementInput" placeholder="写下这次想改什么，比如：这轮重点把首页内容再收紧，减少解释性文字，增强学术感和个人感。"></textarea>
+            </label>
+            <label>
+              备注
+              <input id="requirementNoteInput" placeholder="可选：补充原因、参考方向、优先级" />
+            </label>
+          </div>
+          <div class="actions">
+            <button class="small-button primary" id="saveRequirementButton" type="button">保存需求</button>
+            <button class="small-button" id="clearRequirementButton" type="button">清空</button>
+            <span class="muted" id="requirementStatus">尚未保存新需求</span>
+          </div>
+        </article>
+
         <article class="card control-card">
           <div>
             <h2>Start Work</h2>
@@ -438,34 +503,50 @@
           </div>
           <p class="start-note muted" id="startResult">Waiting for a workflow state file...</p>
         </article>
-
-        <section class="metric-grid">
-          <article class="card metric">
-            <strong id="roundCount">0</strong>
-            <span class="muted">debate rounds</span>
-          </article>
-          <article class="card metric">
-            <strong id="checkpointCount">0</strong>
-            <span class="muted">checkpoints</span>
-          </article>
-          <article class="card metric">
-            <strong id="mode">-</strong>
-            <span class="muted">mode</span>
-          </article>
-          <article class="card metric">
-            <strong id="remaining">-</strong>
-            <span class="muted">remaining</span>
-          </article>
-        </section>
       </section>
 
-      <section class="main-grid">
-        <aside class="agent-list" id="agents"></aside>
+      <section class="metric-grid">
+        <article class="card metric">
+          <strong id="roundCount">0</strong>
+          <span class="muted">debate rounds</span>
+        </article>
+        <article class="card metric">
+          <strong id="checkpointCount">0</strong>
+          <span class="muted">checkpoints</span>
+        </article>
+        <article class="card metric">
+          <strong id="mode">-</strong>
+          <span class="muted">mode</span>
+        </article>
+        <article class="card metric">
+          <strong id="remaining">-</strong>
+          <span class="muted">remaining</span>
+        </article>
+      </section>
 
+      <section class="bottom-grid" style="margin-top: 12px">
+        <aside class="card stack">
+          <div>
+            <h2>当前需求</h2>
+            <div class="empty muted" id="activeRequirement">暂无已保存需求</div>
+          </div>
+          <div>
+            <h2>需求历史</h2>
+            <div class="brief-history" id="briefHistory"></div>
+          </div>
+        </aside>
         <main class="card">
           <h2>Live Discussion</h2>
           <div class="message-list" id="messages"></div>
         </main>
+      </section>
+
+      <section class="main-grid" style="margin-top: 12px">
+        <aside class="agent-list" id="agents"></aside>
+        <article class="card">
+          <h2>Round Details</h2>
+          <div class="timeline" id="timeline"></div>
+        </article>
       </section>
 
       <section class="bottom-grid">
@@ -474,19 +555,15 @@
           <div class="checkpoint-list" id="checkpoints"></div>
         </aside>
         <article class="card">
-          <h2>Round Details</h2>
-          <div class="timeline" id="timeline"></div>
+          <h2>Final Summary</h2>
+          <pre id="finalSummary" class="muted">Waiting for the discussion to finish...</pre>
         </article>
-      </section>
-
-      <section class="card" style="margin-top: 12px">
-        <h2>Final Summary</h2>
-        <pre id="finalSummary" class="muted">Waiting for the discussion to finish...</pre>
       </section>
     </div>
 
     <script type="module">
       const stateUrl = './workflow-state/current.json';
+      const briefUrl = '/api/workflow/brief';
       const startUrl = '/api/workflow/start';
       const runningStatuses = new Set(['starting', 'running', 'finalizing']);
 
@@ -507,11 +584,24 @@
         modelInput: document.querySelector('#modelInput'),
         durationInput: document.querySelector('#durationInput'),
         checkpointInput: document.querySelector('#checkpointInput'),
+        workflowProgress: document.querySelector('#workflowProgress'),
+        requirementInput: document.querySelector('#requirementInput'),
+        requirementNoteInput: document.querySelector('#requirementNoteInput'),
+        requirementStatus: document.querySelector('#requirementStatus'),
+        saveRequirementButton: document.querySelector('#saveRequirementButton'),
+        clearRequirementButton: document.querySelector('#clearRequirementButton'),
+        activeRequirement: document.querySelector('#activeRequirement'),
+        briefHistory: document.querySelector('#briefHistory'),
       };
 
       function fmtTime(value) {
         if (!value) return '-';
         return new Date(value).toLocaleTimeString();
+      }
+
+      function fmtDate(value) {
+        if (!value) return '-';
+        return new Date(value).toLocaleString();
       }
 
       function remaining(endsAt) {
@@ -548,11 +638,43 @@
         return response.json();
       }
 
+      async function loadBrief() {
+        const response = await fetch(`${briefUrl}?t=${Date.now()}`, { cache: 'no-store' });
+        if (!response.ok) throw new Error(`brief ${response.status}`);
+        return response.json();
+      }
+
       function statusColor(status) {
         if (['failed', 'error'].includes(status)) return 'var(--bad)';
         if (['completed', 'done', 'complete'].includes(status)) return 'var(--accent)';
         if (['thinking', 'reviewing', 'responding', 'finalizing', 'running'].includes(status)) return 'var(--warn)';
         return 'var(--accent-2)';
+      }
+
+      function renderBrief(brief) {
+        const active = brief?.active;
+        nodes.activeRequirement.textContent = active?.text || '暂无已保存需求';
+        nodes.requirementStatus.textContent = active
+          ? `已保存：${fmtDate(active.createdAt)}`
+          : '尚未保存新需求';
+
+        const history = Array.isArray(brief?.history) ? brief.history : [];
+        nodes.briefHistory.innerHTML = history.length
+          ? history
+              .map(
+                (item) => `
+                  <div class="brief-item">
+                    <strong>${safe(item.text)}</strong>
+                    <span class="muted">${fmtDate(item.createdAt)}${item.note ? ` · ${safe(item.note)}` : ''}</span>
+                  </div>
+                `,
+              )
+              .join('')
+          : '<div class="empty muted">还没有需求历史。</div>';
+
+        if (active && !nodes.requirementInput.value.trim()) {
+          nodes.requirementInput.value = active.text || '';
+        }
       }
 
       function renderAgents(state) {
@@ -588,7 +710,7 @@
       function renderMessages(state) {
         const messages = state.messages || [];
         if (!messages.length) {
-          nodes.messages.innerHTML = '<div class="empty muted">No discussion yet. Click "开始工作" to start the workflow.</div>';
+          nodes.messages.innerHTML = '<div class="empty muted">No discussion yet. Save a requirement and click "开始工作".</div>';
           return;
         }
 
@@ -665,7 +787,7 @@
           : '<div class="empty muted">No checkpoints saved yet.</div>';
       }
 
-      function render(state) {
+      function render(state, brief) {
         const status = state.status || 'unknown';
         nodes.statusPill.querySelector('span:last-child').textContent = `${status}${state.phase ? ` · ${state.phase}` : ''}`;
         nodes.statusPill.style.color = statusColor(status);
@@ -674,10 +796,9 @@
         nodes.checkpointCount.textContent = state.checkpoints?.length || 0;
         nodes.mode.textContent = state.mode || '-';
         nodes.remaining.textContent = remaining(state.endsAt);
+        nodes.workflowProgress.style.width = `${progress(state)}%`;
 
-        const progressFill = document.querySelector('#workflowProgress');
-        if (progressFill) progressFill.style.width = `${progress(state)}%`;
-
+        renderBrief(brief);
         renderAgents(state);
         renderMessages(state);
         renderTimeline(state);
@@ -690,12 +811,13 @@
         const isRunning = runningStatuses.has(status);
         nodes.startButton.disabled = isRunning;
         nodes.dryRunButton.disabled = isRunning;
+        nodes.saveRequirementButton.disabled = false;
       }
 
       async function tick() {
         try {
-          const state = await loadState();
-          render(state);
+          const [state, brief] = await Promise.all([loadState(), loadBrief()]);
+          render(state, brief);
           if (!runningStatuses.has(state.status)) {
             nodes.startResult.textContent = `Last state loaded: ${state.status || 'unknown'} at ${fmtTime(state.lastSavedAt)}.`;
           }
@@ -703,8 +825,38 @@
           nodes.statusPill.querySelector('span:last-child').textContent = 'waiting for state';
           nodes.startButton.disabled = false;
           nodes.dryRunButton.disabled = false;
+          nodes.saveRequirementButton.disabled = false;
           nodes.finalSummary.textContent =
             'No workflow state found yet. Use the buttons above on the local dev server, or run npm run workflow / npm run workflow:dry.';
+        }
+      }
+
+      async function saveRequirement() {
+        const text = nodes.requirementInput.value.trim();
+        const note = nodes.requirementNoteInput.value.trim();
+
+        if (!text) {
+          nodes.requirementStatus.textContent = '请先输入需求内容';
+          return;
+        }
+
+        nodes.saveRequirementButton.disabled = true;
+        nodes.requirementStatus.textContent = '正在保存需求...';
+
+        try {
+          const response = await fetch(briefUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ text, note, source: 'dashboard' }),
+          });
+          const result = await response.json().catch(() => ({}));
+          if (!response.ok) throw new Error(result.message || `HTTP ${response.status}`);
+          nodes.requirementStatus.textContent = `需求已保存：${fmtDate(result.brief?.lastUpdatedAt)}`;
+          await tick();
+        } catch (error) {
+          nodes.requirementStatus.textContent = `保存失败：${error.message}`;
+        } finally {
+          nodes.saveRequirementButton.disabled = false;
         }
       }
 
@@ -718,6 +870,8 @@
         const interval = dryRun ? 5 : 90;
 
         try {
+          const requirementText = nodes.requirementInput.value.trim();
+          const requirementNote = nodes.requirementNoteInput.value.trim();
           const response = await fetch(startUrl, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -727,11 +881,16 @@
               checkpoint,
               interval,
               dryRun,
+              requirementText,
+              requirementNote,
             }),
           });
           const result = await response.json().catch(() => ({}));
           if (!response.ok) throw new Error(result.message || `HTTP ${response.status}`);
           nodes.startResult.textContent = `${result.message} PID: ${result.pid || '-'}`;
+          if (result.requirement?.text) {
+            nodes.requirementStatus.textContent = `已带入需求：${result.requirement.text}`;
+          }
           setTimeout(tick, 600);
         } catch (error) {
           nodes.startButton.disabled = false;
@@ -741,6 +900,12 @@
         }
       }
 
+      nodes.saveRequirementButton.addEventListener('click', saveRequirement);
+      nodes.clearRequirementButton.addEventListener('click', () => {
+        nodes.requirementInput.value = '';
+        nodes.requirementNoteInput.value = '';
+        nodes.requirementStatus.textContent = '已清空输入';
+      });
       nodes.startButton.addEventListener('click', () => startWorkflow({ dryRun: false }));
       nodes.dryRunButton.addEventListener('click', () => startWorkflow({ dryRun: true }));
 
