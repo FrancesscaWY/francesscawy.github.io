@@ -4,7 +4,7 @@ import path from 'node:path';
 const root = process.cwd();
 const outDir = path.join(root, 'dist');
 
-const targets = ['index.html', '404.html', '_astro'];
+const targets = ['index.html', '404.html'];
 
 for (const target of targets) {
   await rm(path.join(root, target), { recursive: true, force: true });
