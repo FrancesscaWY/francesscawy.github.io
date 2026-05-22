@@ -1,6 +1,8 @@
 # Yan Wei / 魏艳 Personal Homepage
 
-This repository hosts the bilingual personal homepage for [FrancesscaWY](https://github.com/FrancesscaWY) on GitHub Pages.
+This repository hosts the GitHub Pages personal homepage for [Yan Wei / 魏艳](https://github.com/FrancesscaWY).
+
+The site presents profile information, research interests, selected projects, publications, awards, and contact links. It is built as a static Vite site and deployed from the repository root to `https://francesscawy.github.io/`.
 
 ## Local Preview
 
@@ -9,39 +11,12 @@ npm install
 npm run dev
 ```
 
-The site is static-first: `index.html`, `assets/app.js`, and `assets/styles.css` are served directly by GitHub Pages.
+Open the local Vite URL shown in the terminal, usually `http://127.0.0.1:5173/`.
 
-## Homepage Lab Workflow
-
-This repo includes a local workflow for homepage optimization:
-
-- `Homepage Builder`: proposes content, layout, and implementation improvements.
-- `Quality Critic`: evaluates the homepage against strong personal/research sites and challenges weak decisions.
-- The runner writes live state, agent status, debate messages, checkpoints, and final summary to `workflow-state/current.json`.
-- `workflow.html` visualizes the two agents, their current stage, discussion stream, round details, checkpoint history, and the current requirement brief.
-- In local dev mode, the dashboard can start the workflow directly through the `开始工作` button.
-- Use the `新需求` panel first when you want to change direction before the next round.
-
-Run with OpenAI API:
+## Build
 
 ```bash
-set OPENAI_API_KEY=your_key
-npm run dev
+npm run build
 ```
 
-Then visit `http://127.0.0.1:5173/workflow.html` and click `开始工作`.
-
-Test without an API key:
-
-```bash
-npm run dev
-```
-
-Then visit `http://127.0.0.1:5173/workflow.html` and click `快速测试`.
-
-You can still run the workflow from the terminal:
-
-```bash
-npm run workflow
-npm run workflow:dry
-```
+The production output is written to `dist/`. GitHub Pages serves the checked-in static files from the root branch.

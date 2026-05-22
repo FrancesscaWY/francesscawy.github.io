@@ -2,10 +2,10 @@ node_modules/
 dist/
 .vite-dev*.log
 *-preview.png
+assets/resume-photo-0.jpg
 desktop-preview.png
 mobile-preview.png
 mobile-scrolled-preview.png
 workflow-state/*.json
 workflow-state/*.log
-workflow-state/brief.json
-!workflow-state/.gitkeep
+workflow-state/

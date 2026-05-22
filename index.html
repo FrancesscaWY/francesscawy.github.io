@@ -5,43 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="魏艳 / Yan Wei 的个人主页：智能教育、可信 AI 系统、RAG、LLM 评估与应用原型。"
+      content="魏艳（Yan Wei）的个人主页，展示软件工程、智能教育、可信 AI、RAG/Agent 系统、项目经历与研究工作。"
     />
-    <meta name="theme-color" content="#f7f7f3" />
+    <meta name="theme-color" content="#f7f4ed" />
     <meta property="og:title" content="魏艳 / Yan Wei" />
     <meta
       property="og:description"
-      content="Yan Wei's personal homepage: trustworthy AI systems, intelligent education, RAG, and applied software engineering."
+      content="西南大学软件工程本科生，关注智能教育、可信 AI、RAG/Agent 与应用型系统原型。"
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://francesscawy.github.io/" />
     <title>魏艳 / Yan Wei</title>
-    <script>
-      document.documentElement.classList.add('js');
-    </script>
     <link rel="stylesheet" href="./assets/styles.css" />
   </head>
   <body>
-    <div class="site-shell">
-      <header class="topbar">
-        <a class="brand" href="#top" aria-label="Yan Wei home">
-          <span class="brand-mark">YW</span>
-          <span class="brand-copy">
-            <strong data-i18n="nav.name">魏艳 / Yan Wei</strong>
-            <small data-i18n="nav.role">AI systems · education · products</small>
-          </span>
+    <div class="site-shell" id="top">
+      <header class="site-header" aria-label="主导航">
+        <a class="brand" href="#top" aria-label="回到首页">
+          <span>魏艳</span>
+          <small>Yan Wei</small>
         </a>
-
-        <nav class="nav-links" aria-label="Primary">
-          <a href="#focus" data-i18n="nav.focus">研究</a>
-          <a href="#work" data-i18n="nav.work">作品</a>
-          <a href="#capability" data-i18n="nav.capability">方法</a>
-          <a href="#notes" data-i18n="nav.notes">侧面</a>
+        <nav class="nav-links" aria-label="页面章节">
+          <a href="#research" data-i18n="nav.research">研究</a>
+          <a href="#projects" data-i18n="nav.projects">项目</a>
+          <a href="#experience" data-i18n="nav.experience">经历</a>
           <a href="#contact" data-i18n="nav.contact">联系</a>
         </nav>
-
-        <div class="top-actions">
-          <button class="icon-button" id="themeToggle" type="button" aria-label="Toggle theme">
+        <div class="header-actions">
+          <button class="icon-button" id="themeToggle" type="button" aria-label="切换深浅色主题" aria-pressed="false">
             <span class="icon-sun" aria-hidden="true"></span>
           </button>
           <button class="language-toggle" id="languageToggle" type="button" aria-label="Switch language">
@@ -50,17 +41,20 @@
         </div>
       </header>
 
-      <main id="top">
-        <section class="hero">
-          <div class="hero-main reveal">
-            <h1 data-i18n="hero.title">你好，我是魏艳。我在软件工程和 AI 应用之间做一些具体的事。</h1>
+      <main>
+        <section class="hero section-band" aria-labelledby="hero-title">
+          <div class="hero-copy reveal">
+            <p class="eyebrow" data-i18n="hero.eyebrow">Software Engineering · Intelligent Education · Trustworthy AI</p>
+            <p class="hero-kicker" data-i18n="hero.kicker">个人主页</p>
+            <h1 id="hero-title">魏艳 <span>Yan Wei</span></h1>
+            <h2 data-i18n="hero.title">软件工程本科生，关注智能教育与可信 AI 系统。</h2>
             <p class="hero-lede" data-i18n="hero.lede">
-              我关注智能教育、可信 AI 系统、RAG 和应用原型。比起把技术词堆在一起，我更想知道：一个系统能不能真的帮到人，失败时能不能被发现，下一次迭代能不能被验证。
+              我是西南大学软件工程本科生，关注 RAG 增强的智能教育、可信 AI 系统、Agent/MCP 工作流与应用型原型。我的研究和项目都从具体使用场景出发：知识从哪里来，模型怎样调用工具，系统如何暴露依据与失败。
             </p>
-            <div class="hero-actions">
-              <a class="primary-link" href="#work">
+            <div class="hero-actions" aria-label="主要链接">
+              <a class="primary-link" href="#projects">
                 <span class="button-icon arrow-icon" aria-hidden="true"></span>
-                <span data-i18n="hero.primary">看作品</span>
+                <span data-i18n="hero.primary">查看项目</span>
               </a>
               <a class="secondary-link" href="https://github.com/FrancesscaWY" target="_blank" rel="noreferrer">
                 <span class="button-icon code-icon" aria-hidden="true"></span>
@@ -69,81 +63,299 @@
             </div>
           </div>
 
-          <aside class="brief-card reveal" aria-label="Profile brief">
-            <p class="brief-name" data-i18n="hero.name">魏艳 / Yan Wei</p>
-            <p class="brief-role" data-i18n="hero.role">西南大学 · 软件工程本科</p>
-            <div class="brief-list" id="briefList"></div>
+          <aside class="profile-card reveal" aria-label="个人概览">
+            <img
+              class="avatar"
+              src="./assets/profile-photo.jpg"
+              alt="魏艳证件照"
+              width="112"
+              height="112"
+            />
+            <div>
+              <p class="profile-name">魏艳 / Yan Wei</p>
+              <p class="profile-role" data-i18n="hero.role">西南大学 · 软件工程本科</p>
+            </div>
+            <dl class="quick-facts">
+              <div>
+                <dt data-i18n="facts.educationLabel">教育</dt>
+                <dd data-i18n="facts.education">西南大学（211），软件工程，2023.09 至今</dd>
+              </div>
+              <div>
+                <dt data-i18n="facts.rankLabel">成绩</dt>
+                <dd data-i18n="facts.rank">综合排名 8/117，成绩排名 12/117，GPA 3.61/5.00</dd>
+              </div>
+              <div>
+                <dt data-i18n="facts.focusLabel">方向</dt>
+                <dd data-i18n="facts.focus">智能教育、RAG、Agent、LLM 评估、应用原型</dd>
+              </div>
+            </dl>
           </aside>
         </section>
 
-        <section class="about-section reveal" id="about">
-          <p class="eyebrow" data-i18n="about.eyebrow">About</p>
-          <div class="about-grid">
-            <h2 data-i18n="about.title">我把这里当作一个入口，而不是另一份简历。</h2>
-            <div class="about-copy" id="aboutCopy"></div>
+        <section class="metrics-strip reveal" aria-label="关键节点">
+          <div>
+            <strong>WWW 2026</strong>
+            <span data-i18n="metrics.paper">Demo Track 论文第三作者</span>
+          </div>
+          <div>
+            <strong>Top 10%</strong>
+            <span data-i18n="metrics.rank">成绩排名 12/117</span>
+          </div>
+          <div>
+            <strong>2 National</strong>
+            <span data-i18n="metrics.awards">挑战杯国特与计设国二</span>
+          </div>
+          <div>
+            <strong>1 Copyright</strong>
+            <span data-i18n="metrics.copyright">软件著作权</span>
           </div>
         </section>
 
-        <section class="section split-section" id="focus">
-          <div class="section-copy reveal">
-            <p class="eyebrow" data-i18n="focus.eyebrow">Research</p>
-            <h2 data-i18n="focus.title">我的兴趣从真实场景出发，慢慢走向可评估、可解释、可复用的 AI 系统。</h2>
-            <p data-i18n="focus.lede">
-              教育、康养、导览和社交训练这些场景里，模型不是独立工作的。它需要知识来源、工具边界、交互流程和评估标准一起支撑。
-            </p>
-          </div>
-          <div class="focus-list" id="focusList"></div>
-        </section>
-
-        <section class="section" id="work">
+        <section class="section-band about-grid" id="research" aria-labelledby="research-title">
           <div class="section-heading reveal">
-            <div>
-              <p class="eyebrow" data-i18n="work.eyebrow">Selected Work</p>
-              <h2 data-i18n="work.title">这些项目更像一组路标：我怎么定义问题，怎么把它做出来，又怎么回头检查。</h2>
-            </div>
-            <p data-i18n="work.lede">
-              我没有把所有仓库搬上来，只保留最能说明研究兴趣、工程能力和应用意识的部分。
+            <p class="eyebrow" data-i18n="research.eyebrow">Research</p>
+            <h2 id="research-title" data-i18n="research.title">我的研究兴趣集中在智能教育与可信 AI 系统。</h2>
+            <p data-i18n="research.lede">
+              我关心大模型如何进入教育任务、如何组织知识与交互流程，也关心结果是否可以被解释、复查和迭代。相比只展示模型能力，我更希望系统能留下依据、边界和评估记录。
             </p>
           </div>
-          <div class="work-list" id="workList"></div>
+          <div class="research-list">
+            <article class="research-item reveal">
+              <span>01</span>
+              <h3 data-i18n="research.items.rise.title">RAG 增强智能教育系统</h3>
+              <p data-i18n="research.items.rise.body">
+                围绕教育知识库构建、个性化问答、沉浸式课堂与学习分析开展系统研究。相关成果发表于 The Web Conference 2026 Demo Track，本人为第三作者。
+              </p>
+            </article>
+            <article class="research-item reveal">
+              <span>02</span>
+              <h3 data-i18n="research.items.eval.title">智能体记忆与题目自动评估</h3>
+              <p data-i18n="research.items.eval.body">
+                梳理检索式记忆、参数化记忆、工作流记忆等方法，并基于 Bloom 教育目标分类设计题目认知层级、认知一致性与可解性评估框架。
+              </p>
+            </article>
+            <article class="research-item reveal">
+              <span>03</span>
+              <h3 data-i18n="research.items.system.title">RAG / Agent 工程化流程</h3>
+              <p data-i18n="research.items.system.body">
+                关注知识来源、检索增强、工具调用边界、MCP 控制流程与人机交互如何共同决定一个 AI 系统是否可靠可用。
+              </p>
+            </article>
+          </div>
         </section>
 
-        <section class="section split-section" id="capability">
-          <div class="section-copy reveal">
-            <p class="eyebrow" data-i18n="capability.eyebrow">How I Work</p>
-            <h2 data-i18n="capability.title">我希望自己既能提出问题，也能把系统做出来。</h2>
-            <p data-i18n="capability.lede">
-              对高校，我想展示问题意识和研究潜力；对企业，我想展示工程实现、协作和持续学习。它们不是两套话术，而是同一批项目里的两面。
+        <section class="section-band paper-card reveal" aria-label="论文成果">
+          <div>
+            <p class="eyebrow" data-i18n="paper.eyebrow">Publication</p>
+            <h2 data-i18n="paper.title">RISE: A Retrieval-Augmented Generation Enhanced Immersive System for Education</h2>
+          </div>
+          <p data-i18n="paper.body">
+            Guo Chen, Haowei Tang, Yan Wei, Yuming Wang, Haoyang Zhang, Yikang Hou, Maolin Zheng, Junjie Huang. The Web Conference 2026 Demo Track, 2026.
+          </p>
+        </section>
+
+        <section class="section-band" id="projects" aria-labelledby="projects-title">
+          <div class="section-heading wide reveal">
+            <p class="eyebrow" data-i18n="projects.eyebrow">Selected Projects</p>
+            <h2 id="projects-title" data-i18n="projects.title">项目不是堆技术名词，而是我定义问题、搭系统和验证结果的证据。</h2>
+            <p data-i18n="projects.lede">
+              这里选择了最能体现研究兴趣、工程实现与应用意识的工作。更多仓库可以在 GitHub 查看。
             </p>
           </div>
-          <div class="capability-grid" id="capabilityGrid"></div>
+          <div class="project-grid">
+            <article class="project-card reveal">
+              <div class="project-topline">
+                <span>Intelligent Education</span>
+                <a href="https://github.com/FrancesscaWY" target="_blank" rel="noreferrer" aria-label="查看灵知寓学相关 GitHub 资料">
+                  <span class="button-icon arrow-icon" aria-hidden="true"></span>
+                </a>
+              </div>
+              <h3 data-i18n="projects.items.rise.name">灵知寓学 / RISE</h3>
+              <p data-i18n="projects.items.rise.body">
+                基于 LLM、RAG、MCP 与数字人技术的智能教育系统，支持教育知识问答、课堂互动与教学辅助。我负责数字人交互设计、MCP 教学流程、系统原型、前端开发与 LLM 接口联调。
+              </p>
+              <div class="tag-list" aria-label="技术标签">
+                <span>RAG</span>
+                <span>MCP</span>
+                <span>LLM</span>
+                <span>Digital Human</span>
+              </div>
+              <p class="project-outcome" data-i18n="projects.items.rise.outcome">成果：中国大学生计算机设计大赛国家级二等奖；WWW 2026 Demo Track 论文。</p>
+            </article>
+
+            <article class="project-card reveal">
+              <div class="project-topline">
+                <span>Agent Tourism</span>
+                <a href="https://github.com/FrancesscaWY/VirtualTour-Back" target="_blank" rel="noreferrer" aria-label="查看 VirTour 仓库">
+                  <span class="button-icon arrow-icon" aria-hidden="true"></span>
+                </a>
+              </div>
+              <h3>VirTour</h3>
+              <p data-i18n="projects.items.virtour.body">
+                智能体驱动的沉浸式虚拟旅游系统，融合景点问答、语音交互、数字人导览与全景漫游。我负责 TTS 流式链路、MCP 控制流程、数字人接入与前端核心开发。
+              </p>
+              <div class="tag-list" aria-label="技术标签">
+                <span>Python</span>
+                <span>RAG</span>
+                <span>TTS</span>
+                <span>MCP</span>
+              </div>
+              <p class="project-outcome" data-i18n="projects.items.virtour.outcome">成果：第 19 届“挑战杯”国家级特等奖。</p>
+            </article>
+
+            <article class="project-card reveal">
+              <div class="project-topline">
+                <span>Smart Eldercare</span>
+                <a href="https://github.com/FrancesscaWY/IntelliHealthCare" target="_blank" rel="noreferrer" aria-label="查看 IntelliHealthCare 仓库">
+                  <span class="button-icon arrow-icon" aria-hidden="true"></span>
+                </a>
+              </div>
+              <h3>IntelliHealthCare</h3>
+              <p data-i18n="projects.items.ihc.body">
+                面向长者、家属与机构运营团队的智慧康养平台，覆盖健康档案、监测、服务预约、内容社区、RAG 与多智能体能力。我关注多角色流程下的页面联调与一致性。
+              </p>
+              <div class="tag-list" aria-label="技术标签">
+                <span>Vue 3</span>
+                <span>NestJS</span>
+                <span>Prisma</span>
+                <span>Agent</span>
+              </div>
+              <p class="project-outcome" data-i18n="projects.items.ihc.outcome">公开仓库采用 Monorepo，包含用户端、后台端、后端与文档。</p>
+            </article>
+
+            <article class="project-card reveal">
+              <div class="project-topline">
+                <span>Multimodal AI</span>
+                <a href="https://github.com/FrancesscaWY/Emotions-Attention-Identify" target="_blank" rel="noreferrer" aria-label="查看 Emotions-Attention-Identify 仓库">
+                  <span class="button-icon arrow-icon" aria-hidden="true"></span>
+                </a>
+              </div>
+              <h3 data-i18n="projects.items.emo.name">多模态情绪识别社交辅助系统</h3>
+              <p data-i18n="projects.items.emo.body">
+                针对自闭症儿童情绪识别与社交困难，构建融合面部、语音、文本信息的辅助系统；公开识别模块基于 FastAPI、OpenCV、DeepFace 与 Mediapipe。
+              </p>
+              <div class="tag-list" aria-label="技术标签">
+                <span>FastAPI</span>
+                <span>OpenCV</span>
+                <span>DeepFace</span>
+                <span>Mediapipe</span>
+              </div>
+              <p class="project-outcome" data-i18n="projects.items.emo.outcome">成果：软件著作权 1 项。</p>
+            </article>
+
+            <article class="project-card reveal">
+              <div class="project-topline">
+                <span>AI Feedback</span>
+                <a href="https://github.com/FrancesscaWY/SketchMind" target="_blank" rel="noreferrer" aria-label="查看 SketchMind 仓库">
+                  <span class="button-icon arrow-icon" aria-hidden="true"></span>
+                </a>
+              </div>
+              <h3>SketchMind</h3>
+              <p data-i18n="projects.items.sketch.body">
+                草图学习反馈原型，支持绘图任务校验、作品分析与 AI 反馈，让学习建议嵌入绘制过程。项目使用 Next.js、Excalidraw、Express 与 Gemini。
+              </p>
+              <div class="tag-list" aria-label="技术标签">
+                <span>Next.js</span>
+                <span>Excalidraw</span>
+                <span>Express</span>
+                <span>Gemini</span>
+              </div>
+              <p class="project-outcome" data-i18n="projects.items.sketch.outcome">关注点：把 AI 反馈从“结果点评”推进到“过程支持”。</p>
+            </article>
+
+            <article class="project-card reveal">
+              <div class="project-topline">
+                <span>Full-stack Practice</span>
+                <a href="https://github.com/FrancesscaWY/Student-Homework-Submit-Front" target="_blank" rel="noreferrer" aria-label="查看在线作业管理前端仓库">
+                  <span class="button-icon arrow-icon" aria-hidden="true"></span>
+                </a>
+              </div>
+              <h3 data-i18n="projects.items.homework.name">在线作业管理系统</h3>
+              <p data-i18n="projects.items.homework.body">
+                面向班级作业收取的 Web 应用，支持管理员发布、编辑、收取作业，学生登录、查看与提交作业。我独立完成前后端开发、部署及运维。
+              </p>
+              <div class="tag-list" aria-label="技术标签">
+                <span>Vue</span>
+                <span>TypeScript</span>
+                <span>Node.js</span>
+                <span>Deployment</span>
+              </div>
+              <p class="project-outcome" data-i18n="projects.items.homework.outcome">公开仓库包含前端与后端两个部分。</p>
+            </article>
+          </div>
         </section>
 
-        <section class="section" id="notes">
+        <section class="section-band capability-section" id="experience" aria-labelledby="experience-title">
           <div class="section-heading reveal">
-            <div>
-              <p class="eyebrow" data-i18n="notes.eyebrow">Notes</p>
-              <h2 data-i18n="notes.title">除了技术标签，我也想留下一点人的侧面。</h2>
+            <p class="eyebrow" data-i18n="experience.eyebrow">Experience & Skills</p>
+            <h2 id="experience-title" data-i18n="experience.title">我希望自己既能提出问题，也能把系统落到真实流程里。</h2>
+          </div>
+          <div class="capability-grid">
+            <article class="capability-card reveal">
+              <h3 data-i18n="experience.cards.research.title">研究与评估</h3>
+              <p data-i18n="experience.cards.research.body">文献调研、任务定义、指标拆解、实验验证、学习评价与 LLM 评估。</p>
+              <div class="tag-list">
+                <span>Bloom</span>
+                <span>LLM Eval</span>
+                <span>Learning Analytics</span>
+              </div>
+            </article>
+            <article class="capability-card reveal">
+              <h3 data-i18n="experience.cards.ai.title">AI 系统实现</h3>
+              <p data-i18n="experience.cards.ai.body">RAG、MCP、Agent workflow、LLM API、多模态识别、TTS 与数字人交互。</p>
+              <div class="tag-list">
+                <span>RAG</span>
+                <span>MCP</span>
+                <span>Agent</span>
+                <span>Multimodal</span>
+              </div>
+            </article>
+            <article class="capability-card reveal">
+              <h3 data-i18n="experience.cards.engineering.title">工程与协作</h3>
+              <p data-i18n="experience.cards.engineering.body">前后端开发、接口联调、原型设计、部署运维、文档沉淀与版本管理。</p>
+              <div class="tag-list">
+                <span>TypeScript</span>
+                <span>Vue</span>
+                <span>Python</span>
+                <span>Git</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section-band timeline-section" aria-labelledby="timeline-title">
+          <div class="section-heading reveal">
+            <p class="eyebrow" data-i18n="timeline.eyebrow">Milestones</p>
+            <h2 id="timeline-title" data-i18n="timeline.title">一些可以快速核对的节点。</h2>
+          </div>
+          <div class="timeline">
+            <div class="timeline-item reveal">
+              <span>2026</span>
+              <p data-i18n="timeline.items.paper">RISE 论文发表于 The Web Conference 2026 Demo Track；获得软件著作权 1 项。</p>
             </div>
-            <p data-i18n="notes.lede">
-              如果你也在相近方向，也许这些偏好比项目名更容易让我们开始聊天。
-            </p>
+            <div class="timeline-item reveal">
+              <span>2025</span>
+              <p data-i18n="timeline.items.awards">获得第 19 届“挑战杯”国家级特等奖、中国大学生计算机设计大赛国家级二等奖。</p>
+            </div>
+            <div class="timeline-item reveal">
+              <span>2025</span>
+              <p data-i18n="timeline.items.research">参与 RAG 智能教育、智能体记忆、题目自动评估等研究与实验验证。</p>
+            </div>
+            <div class="timeline-item reveal">
+              <span>2024-2025</span>
+              <p data-i18n="timeline.items.projects">完成情绪识别、作业管理、智慧康养、虚拟导览等多类应用系统开发。</p>
+            </div>
+            <div class="timeline-item reveal">
+              <span>2023</span>
+              <p data-i18n="timeline.items.start">进入西南大学软件工程专业，系统学习计算机基础与软件工程。</p>
+            </div>
           </div>
-          <div class="notes-grid" id="notesGrid"></div>
         </section>
 
-        <section class="section evidence-section">
-          <div class="section-copy reveal">
-            <p class="eyebrow" data-i18n="evidence.eyebrow">Milestones</p>
-            <h2 data-i18n="evidence.title">一些可以快速核对的节点。</h2>
-          </div>
-          <div class="evidence-list reveal" id="evidenceList"></div>
-        </section>
-
-        <section class="contact-section reveal" id="contact">
+        <section class="contact-section reveal" id="contact" aria-labelledby="contact-title">
           <div>
             <p class="eyebrow" data-i18n="contact.eyebrow">Contact</p>
-            <h2 data-i18n="contact.title">如果你想聊可信 AI、智能教育、应用原型，或者只是想认识一下我，欢迎联系。</h2>
+            <h2 id="contact-title" data-i18n="contact.title">欢迎联系我讨论智能教育、可信 AI、RAG/Agent 系统或应用原型。</h2>
           </div>
           <div class="contact-actions">
             <a href="mailto:weiyan_francessca@163.com">
@@ -158,9 +370,9 @@
         </section>
       </main>
 
-      <footer>
-        <span data-i18n="footer.built">一个持续更新的双语个人主页。</span>
-        <a href="#top" data-i18n="footer.back">Back to top</a>
+      <footer class="site-footer">
+        <span data-i18n="footer.built">Built for GitHub Pages · Last updated 2026</span>
+        <a href="#top" data-i18n="footer.back">回到顶部</a>
       </footer>
     </div>
 

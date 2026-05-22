@@ -6,9 +6,7 @@
   "scripts": {
     "dev": "vite --host 127.0.0.1",
     "build": "vite build",
-    "preview": "vite preview --host 127.0.0.1",
-    "workflow": "node workflow/run-homepage-lab.mjs --model=gpt-5.5 --duration=30 --checkpoint=10",
-    "workflow:dry": "node workflow/run-homepage-lab.mjs --dry-run --duration=1 --checkpoint=0.5 --interval=5"
+    "preview": "vite preview --host 127.0.0.1"
   },
   "dependencies": {
     "vite": "^7.0.0"
