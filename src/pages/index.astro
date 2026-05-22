@@ -28,7 +28,8 @@ const projects = [
     type: 'Education System',
     link: 'https://github.com/FrancesscaWY',
     body:
-      '基于 LLM、RAG、MCP 与数字人技术的智能教育系统，支持教育知识问答、课堂互动与教学辅助。本人负责数字人交互设计、MCP 教学流程、系统原型、前端开发与 LLM 接口联调。',
+      '面向教育知识问答与课堂互动场景，构建集知识库问答、数字人讲解和沉浸式教学于一体的智能教育系统。',
+    role: '负责数字人交互流程、MCP 教学流程设计、系统原型搭建、前端开发与 LLM 接口联调。',
     result: '中国大学生计算机设计大赛国家级二等奖；WWW 2026 Demo Track 论文。',
     tags: ['RAG', 'MCP', 'LLM', 'Digital Human'],
   },
@@ -37,7 +38,8 @@ const projects = [
     type: 'Immersive Tourism',
     link: 'https://github.com/FrancesscaWY/VirtualTour-Back',
     body:
-      '智能体驱动的沉浸式虚拟旅游系统，融合景点问答、语音交互、数字人导览与全景漫游。本人负责 TTS 流式链路、MCP 控制流程、数字人接入与前端核心开发。',
+      '面向虚拟旅游导览场景，构建融合景点问答、语音交互、数字人导览和全景漫游的沉浸式旅游系统。',
+    role: '负责 TTS 流式链路、MCP 控制流程、数字人接入及前端核心功能开发。',
     result: '第 19 届“挑战杯”国家级特等奖。',
     tags: ['Python', 'RAG', 'TTS', 'MCP'],
   },
@@ -46,7 +48,8 @@ const projects = [
     type: 'Assistive Interaction',
     link: 'https://github.com/FrancesscaWY/Emotions-Attention-Identify',
     body:
-      '面向自闭症儿童情绪识别与社交辅助场景，构建融合面部、语音、文本信息的辅助系统；公开识别模块基于 FastAPI、OpenCV、DeepFace 与 Mediapipe。',
+      '面向自闭症儿童情绪识别与社交辅助场景，设计融合面部、语音和文本信息的情绪识别辅助系统。',
+    role: '负责识别模块方案整理与系统实现，公开模块基于 FastAPI、OpenCV、DeepFace 与 Mediapipe。',
     result: '软件著作权 1 项。',
     tags: ['FastAPI', 'OpenCV', 'DeepFace', 'Mediapipe'],
   },
@@ -55,7 +58,8 @@ const projects = [
     type: 'Health Platform',
     link: 'https://github.com/FrancesscaWY/IntelliHealthCare',
     body:
-      '面向长者、家属与机构运营团队的智慧康养平台，覆盖健康档案、健康监测、服务预约、内容社区、RAG 与多智能体能力。',
+      '面向长者、家属和机构运营团队，建设覆盖健康档案、健康监测、服务预约和内容社区的智慧康养平台。',
+    role: '参与业务流程梳理、前后端功能开发与系统落地，并扩展 RAG 与多智能体相关能力。',
     result: '在实习工作中获评“最佳项目”，并完成业务流程梳理、系统开发与落地应用。',
     tags: ['Vue 3', 'NestJS', 'Prisma', 'Agent'],
   },
@@ -64,8 +68,9 @@ const projects = [
     type: 'Coursework System',
     link: 'https://github.com/FrancesscaWY/Student-Homework-Submit-Front',
     body:
-      '面向班级作业收取的 Web 应用，支持管理员发布、编辑、收取作业，学生登录、查看与提交作业。本人独立完成前后端开发、部署及运维。',
-    result: '公开仓库包含前端与后端两个部分。',
+      '面向班级作业发布、收取与提交流程，开发支持教师管理和学生提交的在线作业管理系统。',
+    role: '独立完成前后端开发、部署与日常运维，覆盖登录、作业发布、编辑、提交和收取等功能。',
+    result: '完成前端与后端两个公开仓库，并部署为可用系统。',
     tags: ['Vue', 'TypeScript', 'Node.js', 'Deployment'],
   },
 ];
@@ -89,7 +94,7 @@ const honors = [
       name="description"
       content="魏艳（Yan Wei）个人主页：西南大学软件工程本科生，展示个人信息、科研经历、项目实践与获奖情况。"
     />
-    <meta name="theme-color" content="#f7f7f5" />
+    <meta name="theme-color" content="#f7f7f7" />
     <meta property="og:title" content="魏艳 / Yan Wei" />
     <meta
       property="og:description"
@@ -216,18 +221,21 @@ const honors = [
                 <h2 id="projects-title">Selected Projects</h2>
                 <span class="section-kicker">项目经历</span>
               </div>
-              <div class="project-list">
+              <div class="project-grid">
                 {projects.map((project) => (
-                  <article class="project-entry">
-                    <div class="project-heading">
-                      <p class="project-type">{project.type}</p>
-                      <h3>
-                        <a href={project.link} target="_blank" rel="noreferrer">{project.name}</a>
-                      </h3>
+                  <article class="project-card">
+                    <p class="project-type">{project.type}</p>
+                    <h3>
+                      <a href={project.link} target="_blank" rel="noreferrer">{project.name}</a>
+                    </h3>
+                    <div class="project-copy">
+                      <p><strong>简介：</strong>{project.body}</p>
+                      <p><strong>负责：</strong>{project.role}</p>
+                      <p><strong>成果：</strong>{project.result}</p>
                     </div>
-                    <p class="project-body">{project.body}</p>
-                    <p class="project-result"><span>成果</span>{project.result}</p>
-                    <p class="project-tech"><span>技术</span>{project.tags.join(' / ')}</p>
+                    <div class="tags" aria-label={`${project.name} 技术标签`}>
+                      {project.tags.map((tag) => <span>{tag}</span>)}
+                    </div>
                   </article>
                 ))}
               </div>
