@@ -1,8 +1,10 @@
 node_modules/
 dist/
 .vite-dev*.log
+/.astro/
 *-preview.png
 assets/resume-photo-0.jpg
+assets/
 desktop-preview.png
 mobile-preview.png
 mobile-scrolled-preview.png
