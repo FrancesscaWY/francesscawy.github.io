@@ -26,7 +26,7 @@ const researchItems = [
 const projects = [
   {
     name: '灵知寓学 / RISE',
-    type: 'Intelligent Education',
+    type: 'Education System',
     link: 'https://github.com/FrancesscaWY',
     body:
       '基于 LLM、RAG、MCP 与数字人技术的智能教育系统，支持教育知识问答、课堂互动与教学辅助。本人负责数字人交互设计、MCP 教学流程、系统原型、前端开发与 LLM 接口联调。',
@@ -35,7 +35,7 @@ const projects = [
   },
   {
     name: 'VirTour',
-    type: 'Agent-guided Tourism',
+    type: 'Immersive Tourism',
     link: 'https://github.com/FrancesscaWY/VirtualTour-Back',
     body:
       '智能体驱动的沉浸式虚拟旅游系统，融合景点问答、语音交互、数字人导览与全景漫游。本人负责 TTS 流式链路、MCP 控制流程、数字人接入与前端核心开发。',
@@ -44,7 +44,7 @@ const projects = [
   },
   {
     name: '多模态情绪识别社交辅助系统',
-    type: 'Multimodal AI',
+    type: 'Assistive Interaction',
     link: 'https://github.com/FrancesscaWY/Emotions-Attention-Identify',
     body:
       '面向自闭症儿童情绪识别与社交辅助场景，构建融合面部、语音、文本信息的辅助系统；公开识别模块基于 FastAPI、OpenCV、DeepFace 与 Mediapipe。',
@@ -53,16 +53,16 @@ const projects = [
   },
   {
     name: 'IntelliHealthCare',
-    type: 'Smart Eldercare',
+    type: 'Health Platform',
     link: 'https://github.com/FrancesscaWY/IntelliHealthCare',
     body:
       '面向长者、家属与机构运营团队的智慧康养平台，覆盖健康档案、健康监测、服务预约、内容社区、RAG 与多智能体能力。',
-    result: 'Monorepo 包含用户端、后台端、NestJS 后端与项目文档。',
+    result: '在实习工作中获评“最佳项目”，并完成业务流程梳理、系统开发与落地应用。',
     tags: ['Vue 3', 'NestJS', 'Prisma', 'Agent'],
   },
   {
     name: '在线作业管理系统',
-    type: 'Full-stack Practice',
+    type: 'Coursework System',
     link: 'https://github.com/FrancesscaWY/Student-Homework-Submit-Front',
     body:
       '面向班级作业收取的 Web 应用，支持管理员发布、编辑、收取作业，学生登录、查看与提交作业。本人独立完成前后端开发、部署及运维。',
@@ -88,13 +88,13 @@ const honors = [
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="魏艳（Yan Wei）个人主页：西南大学软件工程本科生，研究方向包括智能教育、可信 AI、RAG/Agent 系统与应用型软件开发。"
+      content="魏艳（Yan Wei）个人主页：西南大学软件工程本科生，展示教育背景、科研经历、项目实践与获奖情况。"
     />
     <meta name="theme-color" content="#f7f7f5" />
     <meta property="og:title" content="魏艳 / Yan Wei" />
     <meta
       property="og:description"
-      content="西南大学软件工程本科生，关注智能教育、可信 AI、RAG/Agent 系统与应用型软件开发。"
+      content="西南大学软件工程本科生，展示教育背景、科研经历、项目实践与获奖情况。"
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://francesscawy.github.io/" />
@@ -159,11 +159,11 @@ const honors = [
               <dl class="info-list">
                 <div>
                   <dt>Research</dt>
-                  <dd>Intelligent Education, Trustworthy AI, LLM Evaluation</dd>
+                  <dd>Intelligent Education, LLM Evaluation, Learning Analytics</dd>
                 </div>
                 <div>
                   <dt>Systems</dt>
-                  <dd>RAG, Agent Workflow, MCP, Multimodal AI</dd>
+                  <dd>RAG, Agent Workflow, MCP, Multimodal Interaction</dd>
                 </div>
                 <div>
                   <dt>Engineering</dt>
@@ -230,18 +230,18 @@ const honors = [
                 <h2 id="projects-title">Selected Projects</h2>
                 <span class="section-kicker">项目经历</span>
               </div>
-              <div class="project-grid">
+              <div class="project-list">
                 {projects.map((project) => (
-                  <article class="project-card">
-                    <p class="project-type">{project.type}</p>
-                    <h3>
-                      <a href={project.link} target="_blank" rel="noreferrer">{project.name}</a>
-                    </h3>
-                    <p>{project.body}</p>
-                    <p><strong>成果：</strong>{project.result}</p>
-                    <div class="tags" aria-label={`${project.name} 技术标签`}>
-                      {project.tags.map((tag) => <span>{tag}</span>)}
+                  <article class="project-entry">
+                    <div class="project-heading">
+                      <p class="project-type">{project.type}</p>
+                      <h3>
+                        <a href={project.link} target="_blank" rel="noreferrer">{project.name}</a>
+                      </h3>
                     </div>
+                    <p class="project-body">{project.body}</p>
+                    <p class="project-result"><span>成果</span>{project.result}</p>
+                    <p class="project-tech"><span>技术</span>{project.tags.join(' / ')}</p>
                   </article>
                 ))}
               </div>
